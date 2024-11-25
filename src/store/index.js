@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer as homeReducer } from './modules/home';
-import { reducer as entireReducer } from './modules/entire';
+import homeReducer from './modules/home';
+import entireReducer from './modules/entire';
 
 const store = configureStore({
   reducer: {

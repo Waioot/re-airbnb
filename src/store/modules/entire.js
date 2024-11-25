@@ -6,4 +6,5 @@ const entireSlice = createSlice({
   reducers: {},
 });
 
-export const { actions, reducer } = entireSlice;
+export const { actions } = entireSlice;
+export default entireSlice.reducer;
