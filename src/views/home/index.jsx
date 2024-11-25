@@ -1,13 +1,13 @@
 import React, { memo, useEffect } from 'react';
-import { YRequest } from '@/services';
-const Home = memo(() => {
-  useEffect(() => {
-    YRequest.get({ url: '/home/highscore' }).then(res => {
-      console.log(res);
-    });
-  }, []);
 
-  return <div>Home Page</div>;
+import { HomeWrapper } from './style';
+import HomeBanner from './c-cpns/home-banner';
+const Home = memo(() => {
+  return (
+    <HomeWrapper>
+      <HomeBanner></HomeBanner>
+    </HomeWrapper>
+  );
 });
 
 export default Home;
