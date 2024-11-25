@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import App from '@/App';
 import Home from '@/views/home';
@@ -9,6 +9,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
+      {
+        index: true, // 添加默认路由
+        element: <Navigate to='/home' replace={true} />,
+      },
       {
         path: '/home',
         element: <Home />,

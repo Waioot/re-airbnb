@@ -7,7 +7,7 @@ const Home = memo(() => {
     });
   }, []);
 
-  return <div>Home</div>;
+  return <div>Home Page</div>;
 });
 
 export default Home;
