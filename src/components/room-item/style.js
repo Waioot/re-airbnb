@@ -52,5 +52,16 @@ export const ItemWrapper = styled.div`
   .bottom {
     display: flex;
     align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: ${props => props.theme.textColor.primary};
+
+    .reviews {
+      margin: 0 2px 0 4px;
+    }
+
+    .MuiRating-decimal {
+      margin-right: -3px;
+    }
   }
 `;
