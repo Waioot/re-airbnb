@@ -4,6 +4,7 @@ import {
   getHomeHighScoreData,
   getHomeDiscountData,
   getHomeHotRecommendData,
+  getHomeLongforData,
 } from '@/services/modules/home';
 
 // 1. 异步 action creator
@@ -14,15 +15,23 @@ export const fetchHomeDataAction = createAsyncThunk(
 
     // 执行异步操作
     // 使用 Promise.all 并发请求
-    const [goodPriceRes, highScoreRes, discountRes, recommendRes] =
+    const [goodPriceRes, highScoreRes, discountRes, recommendRes, longforRes] =
       await Promise.all([
         getHomeGoodPriceData(),
         getHomeHighScoreData(),
         getHomeDiscountData(),
         getHomeHotRecommendData(),
+        getHomeLongforData(),
       ]);
+
     // 这个返回值会自动成为 fulfilled case 中的 payload
-    return { goodPriceRes, highScoreRes, discountRes, recommendRes };
+    return {
+      goodPriceRes,
+      highScoreRes,
+      discountRes,
+      recommendRes,
+      longforRes,
+    };
   }
 );
 
@@ -51,6 +60,9 @@ const homeSlice = createSlice({
     changeRecommendInfoAction(state, { payload }) {
       state.recommendInfo = payload;
     },
+    changeLongforInfoAction(state, { payload }) {
+      state.longforInfo = payload;
+    },
   },
   // 2. 在 extraReducers 中处理状态更新
   extraReducers: builder => {
@@ -63,6 +75,7 @@ const homeSlice = createSlice({
       state.highScoreInfo = payload.highScoreRes;
       state.discountInfo = payload.discountRes;
       state.recommendInfo = payload.recommendRes;
+      state.longforInfo = payload.longforRes;
     });
   },
 });
@@ -72,5 +85,6 @@ export const {
   changeHighScoreInfoAction,
   changeDiscountInfoAction,
   changeRecommendInfoAction,
+  changeLongforInfoAction,
 } = homeSlice.actions;
 export default homeSlice.reducer;
