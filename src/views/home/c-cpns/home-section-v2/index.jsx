@@ -10,8 +10,10 @@ import SectionFooter from '@/components/section-footer';
 const HomeSectionV2 = memo(({ infoData }) => {
   const inistalName = Object.keys(infoData?.dest_list)?.[0];
   const [tabName, setTabName] = useState(inistalName);
+
   // 数据转换
   const tabNames = infoData?.dest_address?.map(item => item.name);
+
   // 组件间通信
   const handleClickItem = useCallback((index, tabName) => {
     setTabName(tabName);
