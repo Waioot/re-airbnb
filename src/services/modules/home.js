@@ -13,3 +13,10 @@ export async function getHomeHighScoreData() {
     url: '/home/highscore',
   });
 }
+
+// 获取折扣房数据
+export async function getHomeDiscountData() {
+  return YRequest.get({
+    url: '/home/discount',
+  });
+}

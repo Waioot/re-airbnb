@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {
   getHomeGoodPriceData,
   getHomeHighScoreData,
+  getHomeDiscountData,
 } from '@/services/modules/home';
 
 // 1. 异步 action creator
@@ -12,12 +13,13 @@ export const fetchHomeDataAction = createAsyncThunk(
 
     // 执行异步操作
     // 使用 Promise.all 并发请求
-    const [goodPriceRes, highScoreRes] = await Promise.all([
+    const [goodPriceRes, highScoreRes, discountRes] = await Promise.all([
       getHomeGoodPriceData(),
       getHomeHighScoreData(),
+      getHomeDiscountData(),
     ]);
     // 这个返回值会自动成为 fulfilled case 中的 payload
-    return { goodPriceRes, highScoreRes };
+    return { goodPriceRes, highScoreRes, discountRes };
   }
 );
 
@@ -40,6 +42,9 @@ const homeSlice = createSlice({
     changeHighScoreInfoAction(state, { payload }) {
       state.highScoreInfo = payload;
     },
+    changeDiscountInfoAction(state, { payload }) {
+      state.discountInfo = payload;
+    },
   },
   // 2. 在 extraReducers 中处理状态更新
   extraReducers: builder => {
@@ -50,10 +55,14 @@ const homeSlice = createSlice({
       state.isLoading = false;
       state.goodPriceInfo = payload.goodPriceRes;
       state.highScoreInfo = payload.highScoreRes;
+      state.discountInfo = payload.discountRes;
     });
   },
 });
 
-export const { changeGoodPriceInfoAction, changeHighScoreInfoAction } =
-  homeSlice.actions;
+export const {
+  changeGoodPriceInfoAction,
+  changeHighScoreInfoAction,
+  changeDiscountInfoAction,
+} = homeSlice.actions;
 export default homeSlice.reducer;

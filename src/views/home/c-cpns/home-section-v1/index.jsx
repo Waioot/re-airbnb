@@ -4,11 +4,11 @@ import { SectionV1Wrapper } from './style';
 import SectionHeader from '@/components/section-header';
 import SectionRooms from '@/components/section-rooms';
 
-const HomeSectionV1 = memo(({ title, roomList }) => {
+const HomeSectionV1 = memo(({ infoData }) => {
   return (
     <SectionV1Wrapper>
-      <SectionHeader title={title} />
-      <SectionRooms roomList={roomList} />
+      <SectionHeader title={infoData.title} />
+      <SectionRooms roomList={infoData.list} itemWidth='25%' />
     </SectionV1Wrapper>
   );
 });

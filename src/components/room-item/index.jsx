@@ -2,10 +2,10 @@ import React, { memo } from 'react';
 import { ItemWrapper } from './style';
 import { Rating } from '@mui/material';
 const RoomItem = memo(props => {
-  const { itemData } = props;
+  const { itemData, itemWidth = '25%' } = props;
   return (
     <ItemWrapper
-      width='25%'
+      itemWidth={itemWidth}
       verifyColor={itemData?.verify_info?.text_color || '#39576a'}
     >
       <div className='inner'>
