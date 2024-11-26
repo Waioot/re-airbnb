@@ -1,4 +1,4 @@
-function styleStrToObject(styleStr) {
+export function styleStrToObject(styleStr) {
   const obj = {};
   const s = styleStr
     .toLowerCase()
