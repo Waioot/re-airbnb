@@ -1,13 +1,12 @@
-import React, { memo, useEffect, useCallback, useState } from 'react';
+import React, { memo, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { HomeWrapper } from './style';
 import HomeBanner from './c-cpns/home-banner';
-import SectionTabs from '@/components/section-tabs';
-import { fetchHomeDataAction } from '@/store/modules/home';
 import HomeSectionV1 from './c-cpns/home-section-v1';
-import SectionHeader from '@/components/section-header';
-import SectionRooms from '@/components/section-rooms';
+import HomeSectionV2 from './c-cpns/home-section-v2';
+import { fetchHomeDataAction } from '@/store/modules/home';
+import { isEmptyObject } from '@/utils';
 
 const Home = memo(() => {
   const dispatch = useDispatch();
@@ -22,13 +21,6 @@ const Home = memo(() => {
     shallowEqual
   );
 
-  const [tabName, setTabName] = useState('佛山');
-  // 数据转换
-  const tabNames = discountInfo?.dest_address?.map(item => item.name);
-  // 组件间通信
-  const handleClickItem = useCallback((index, tabName) => {
-    setTabName(tabName);
-  }, []);
   // 派发异步事件： 发送网络请求
   useEffect(() => {
     dispatch(fetchHomeDataAction());
@@ -39,18 +31,9 @@ const Home = memo(() => {
       <HomeBanner />
       <div className='content'>
         {/* 折扣数据 */}
-        <div className='discount'>
-          <SectionHeader
-            title={discountInfo.title}
-            subtitle={discountInfo.subtitle}
-          />
-          <SectionTabs tabNames={tabNames} tabClick={handleClickItem} />
-          <SectionRooms
-            roomList={discountInfo?.dest_list?.[tabName]}
-            itemWidth='33.33%'
-          />
-        </div>
-
+        {!isEmptyObject(discountInfo) && (
+          <HomeSectionV2 infoData={discountInfo} />
+        )}
         {/* 高评分数据 */}
         <HomeSectionV1 infoData={goodPriceInfo} />
         <HomeSectionV1 infoData={highScoreInfo} />
