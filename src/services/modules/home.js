@@ -34,3 +34,10 @@ export function getHomeLongforData() {
     url: '/home/longfor',
   });
 }
+
+// 获取特色房源数据
+export function getHomePlusData() {
+  return YRequest.get({
+    url: '/home/plus',
+  });
+}
