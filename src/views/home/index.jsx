@@ -12,14 +12,16 @@ const Home = memo(() => {
   const dispatch = useDispatch();
 
   // 从 redux 中获取数据
-  const { goodPriceInfo, highScoreInfo, discountInfo } = useSelector(
-    state => ({
-      goodPriceInfo: state.home.goodPriceInfo,
-      highScoreInfo: state.home.highScoreInfo,
-      discountInfo: state.home.discountInfo,
-    }),
-    shallowEqual
-  );
+  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo } =
+    useSelector(
+      state => ({
+        goodPriceInfo: state.home.goodPriceInfo,
+        highScoreInfo: state.home.highScoreInfo,
+        discountInfo: state.home.discountInfo,
+        recommendInfo: state.home.recommendInfo,
+      }),
+      shallowEqual
+    );
 
   // 派发异步事件： 发送网络请求
   useEffect(() => {
@@ -34,9 +36,17 @@ const Home = memo(() => {
         {!isEmptyObject(discountInfo) && (
           <HomeSectionV2 infoData={discountInfo} />
         )}
+        {/* 热门推荐房源 */}
+        {!isEmptyObject(recommendInfo) && (
+          <HomeSectionV2 infoData={recommendInfo} />
+        )}
         {/* 高评分数据 */}
-        <HomeSectionV1 infoData={goodPriceInfo} />
-        <HomeSectionV1 infoData={highScoreInfo} />
+        {!isEmptyObject(goodPriceInfo) && (
+          <HomeSectionV1 infoData={goodPriceInfo} />
+        )}
+        {!isEmptyObject(highScoreInfo) && (
+          <HomeSectionV1 infoData={highScoreInfo} />
+        )}
       </div>
     </HomeWrapper>
   );

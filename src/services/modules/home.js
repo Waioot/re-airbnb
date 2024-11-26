@@ -20,3 +20,10 @@ export async function getHomeDiscountData() {
     url: '/home/discount',
   });
 }
+
+// 获取热门推荐数据
+export async function getHomeHotRecommendData() {
+  return YRequest.get({
+    url: '/home/hotrecommenddest',
+  });
+}
