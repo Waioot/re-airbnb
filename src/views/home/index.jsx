@@ -5,16 +5,17 @@ import HomeBanner from './c-cpns/home-banner';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { fetchHomeDataAction } from '@/store/modules/home';
 import SectionHeader from '@/components/section-header';
-import RoomItem from '@/components/room-item';
 import SectionRooms from '@/components/section-rooms';
+import HomeSectionV1 from './c-cpns/home-section-v1';
 
 const Home = memo(() => {
   const dispatch = useDispatch();
 
   // 从 redux 中获取数据
-  const { goodPriceInfo } = useSelector(
+  const { goodPriceInfo, highScoreInfo } = useSelector(
     state => ({
       goodPriceInfo: state.home.goodPriceInfo,
+      highScoreInfo: state.home.highScoreInfo,
     }),
     shallowEqual
   );
@@ -28,10 +29,14 @@ const Home = memo(() => {
     <HomeWrapper>
       <HomeBanner />
       <div className='content'>
-        <div className='good-price'>
-          <SectionHeader title={goodPriceInfo.title} />
-          <SectionRooms goodPriceInfo={goodPriceInfo} />
-        </div>
+        <HomeSectionV1
+          title={goodPriceInfo.title}
+          roomList={goodPriceInfo.list}
+        />
+        <HomeSectionV1
+          title={highScoreInfo.title}
+          roomList={highScoreInfo.list}
+        />
       </div>
     </HomeWrapper>
   );

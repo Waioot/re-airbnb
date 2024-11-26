@@ -2,10 +2,10 @@ import React, { memo } from 'react';
 
 import { SectionRoomsWrapper } from './style';
 import RoomItem from '../room-item';
-const SectionRooms = memo(({ goodPriceInfo }) => {
+const SectionRooms = memo(({ roomList }) => {
   return (
     <SectionRoomsWrapper>
-      {goodPriceInfo?.list?.slice(0, 8).map(item => {
+      {roomList?.slice(0, 8).map(item => {
         return <RoomItem key={item.id} itemData={item} />;
       })}
     </SectionRoomsWrapper>
