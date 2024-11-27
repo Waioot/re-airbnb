@@ -62,7 +62,7 @@ export const ItemWrapper = styled.div`
       bottom: 10px;
       margin: 0 auto;
 
-      .item {
+      .dot-item {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -77,6 +77,8 @@ export const ItemWrapper = styled.div`
           &.active {
             width: 8px;
             height: 8px;
+
+            background-color: red;
           }
         }
       }

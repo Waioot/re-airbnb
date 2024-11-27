@@ -9,7 +9,7 @@ export const ScrollViewWrapper = styled.div`
 
     .scroll-content {
       display: flex;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease;
     }
   }
 

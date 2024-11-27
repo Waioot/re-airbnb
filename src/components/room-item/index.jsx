@@ -1,18 +1,32 @@
-import React, { memo, useCallback, useRef } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 import { ItemWrapper } from './style';
 import { Rating } from '@mui/material';
 import { Carousel } from 'antd';
 import IconArrowLeft from '@/assets/svg/icon-arrow-left';
 import IconArrowRight from '@/assets/svg/icon-arrow-right';
+import Indicator from '@/base-ui/indicator';
 
 const RoomItem = memo(({ itemData, itemWidth = '25%' }) => {
   const carouselRef = useRef();
 
-  const controlClickHandle = useCallback(isNext => {
-    if (carouselRef.current) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const controlClickHandle = useCallback(
+    isNext => {
       isNext ? carouselRef.current.next() : carouselRef.current.prev();
-    }
-  }, []);
+
+      let newIndex = isNext ? selectedIndex + 1 : selectedIndex - 1;
+      const length = itemData.picture_urls.length;
+      if (newIndex >= length) {
+        newIndex = 0;
+      }
+      if (newIndex < 0) {
+        newIndex = length - 1;
+      }
+      setSelectedIndex(newIndex);
+    },
+    [selectedIndex, itemData]
+  );
 
   return (
     <ItemWrapper itemWidth={itemWidth}>
@@ -36,6 +50,21 @@ const RoomItem = memo(({ itemData, itemWidth = '25%' }) => {
               >
                 <IconArrowRight width='24' height='24' />
               </div>
+            </div>
+            <div className='indicator'>
+              <Indicator selectedIndex={selectedIndex}>
+                {itemData?.picture_urls?.map((item, index) => {
+                  return (
+                    <div className='dot-item' key={index}>
+                      <span
+                        className={`dot ${
+                          selectedIndex === index ? 'active' : ''
+                        }`}
+                      ></span>
+                    </div>
+                  );
+                })}
+              </Indicator>
             </div>
             {/* 轮播图 */}
             <Carousel dots={false} ref={carouselRef}>

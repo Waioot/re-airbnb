@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef } from 'react';
 import { IndicatorWrapper } from './style';
 
-const Indicator = memo(({ children, selectedIndex }) => {
+const Indicator = memo(({ children, selectedIndex = 0 }) => {
   const contentRef = useRef();
 
   useEffect(() => {

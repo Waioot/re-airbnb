@@ -5,7 +5,7 @@ export const IndicatorWrapper = styled.div`
   .i-content {
     display: flex;
     position: relative;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease;
 
     > * {
       flex-shrink: 0;
