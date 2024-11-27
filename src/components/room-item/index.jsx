@@ -6,7 +6,7 @@ import IconArrowLeft from '@/assets/svg/icon-arrow-left';
 import IconArrowRight from '@/assets/svg/icon-arrow-right';
 import Indicator from '@/base-ui/indicator';
 
-const RoomItem = memo(({ itemData, itemWidth = '25%' }) => {
+const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
   const carouselRef = useRef();
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -28,8 +28,14 @@ const RoomItem = memo(({ itemData, itemWidth = '25%' }) => {
     [selectedIndex, itemData]
   );
 
+  const handleClickRoom = () => {
+    if (roomClick) {
+      roomClick();
+    }
+  };
+
   return (
-    <ItemWrapper itemWidth={itemWidth}>
+    <ItemWrapper itemWidth={itemWidth} onClick={handleClickRoom}>
       <div className='inner'>
         {!itemData?.picture_urls ? (
           <div className='cover'>
