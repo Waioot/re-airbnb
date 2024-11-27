@@ -4,6 +4,7 @@ import App from '@/App';
 import Home from '@/views/home';
 import Entire from '@/views/entire';
 import Detail from '@/views/detail';
+import Demo from '@/views/demo';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/detail',
         element: <Detail />,
+      },
+      {
+        path: '/demo',
+        element: <Demo />,
       },
     ],
   },
