@@ -28,14 +28,17 @@ const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
     [selectedIndex, itemData]
   );
 
-  const handleClickRoom = () => {
+  const handleClickRoom = item => {
     if (roomClick) {
-      roomClick();
+      roomClick(item);
     }
   };
 
   return (
-    <ItemWrapper itemWidth={itemWidth} onClick={handleClickRoom}>
+    <ItemWrapper
+      itemWidth={itemWidth}
+      onClick={() => handleClickRoom(itemData)}
+    >
       <div className='inner'>
         {!itemData?.picture_urls ? (
           <div className='cover'>
