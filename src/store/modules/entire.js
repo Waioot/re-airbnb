@@ -3,13 +3,15 @@ import { getEntireRoomListData } from '@/services/modules/entire';
 
 export const fetchEntireRoomListDataAction = createAsyncThunk(
   'fetchEntireRoomListData',
-  async (payload, { getState }) => {
-    // 从 redux 中获取当前页码
-    const currentPage = getState().entire.currentPage;
-
+  async (payload = { page: 0 }, { dispatch }) => {
+    // 修改当前页码
+    dispatch(changeCurrentPageAction(payload.page));
     // 发送网络请求
-    const res = await getEntireRoomListData(currentPage * 20);
-    console.log(res);
+    const res = await getEntireRoomListData(payload.page * 20);
+    // 保存房源列表到 redux
+    dispatch(changeRoomListAction(res.list));
+    // 保存房源总数到 redux
+    dispatch(changeTotalCountAction(res.totalCount));
     return res;
   }
 );
@@ -17,6 +19,7 @@ export const fetchEntireRoomListDataAction = createAsyncThunk(
 const entireSlice = createSlice({
   name: 'entire',
   initialState: {
+    isLoading: false,
     currentPage: 3,
     roomList: [],
     totalCount: 0,
@@ -33,13 +36,12 @@ const entireSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(
-      fetchEntireRoomListDataAction.fulfilled,
-      (state, { payload }) => {
-        state.roomList = payload.list;
-        state.totalCount = payload.totalCount;
-      }
-    );
+    builder.addCase(fetchEntireRoomListDataAction.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchEntireRoomListDataAction.fulfilled, state => {
+      state.isLoading = false;
+    });
   },
 });
 

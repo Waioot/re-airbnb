@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { EntirePaginationWrapper } from './style';
 import { Pagination } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCurrentPageAction } from '@/store/modules/entire';
+import { fetchEntireRoomListDataAction } from '@/store/modules/entire';
 const EntirePagination = memo(() => {
   const { totalCount, currentPage, roomList } = useSelector(state => ({
     totalCount: state.entire.totalCount,
@@ -14,16 +14,18 @@ const EntirePagination = memo(() => {
   const end = (currentPage + 1) * 20;
 
   const dispatch = useDispatch();
-  const handlePageChange = (_, page) => {
-    dispatch(changeCurrentPageAction(page));
-  };
+  function handlePageChange(_, page) {
+    // 回到顶部
+    window.scrollTo(0, 0);
+    dispatch(fetchEntireRoomListDataAction({ page }));
+  }
   return (
     <EntirePaginationWrapper>
       {roomList.length > 0 && (
         <div className='info'>
           <Pagination
             count={Math.ceil(totalCount / 20)}
-            page={currentPage}
+            page={currentPage + 1}
             onChange={handlePageChange}
           />
           <div className='desc'>
