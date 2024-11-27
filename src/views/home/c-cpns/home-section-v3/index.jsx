@@ -15,7 +15,7 @@ const HomeSectionV3 = memo(({ infoData }) => {
           })}
         </ScrollView>
       </div>
-      <SectionFooter />
+      <SectionFooter name='plus' />
     </HomeSectionV3Wrapper>
   );
 });
