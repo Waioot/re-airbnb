@@ -6,6 +6,7 @@ import IconSearchBar from '@/assets/svg/icon_search_bar';
 import SearchTabs from './c-cpns/saerch-tabs';
 import SearchSections from './c-cpns/saerch-sections';
 import SearchTitles from '@/assets/data/search_titles.json';
+import useScrollPosition from '@/hooks/useScrollPosition';
 
 const HeaderCenter = memo(({ isSearch, searchClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,6 +17,9 @@ const HeaderCenter = memo(({ isSearch, searchClick }) => {
   function searchClickHandle() {
     searchClick();
   }
+  const { scrollY } = useScrollPosition();
+  console.log(scrollY);
+
   return (
     <CenterWrapper>
       <CSSTransition
