@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const HeaderWrapper = styled.div`
   &.fixed {
     position: fixed;
+    z-index: 99;
     top: 0;
     left: 0;
     right: 0;

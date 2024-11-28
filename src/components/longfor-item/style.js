@@ -5,22 +5,25 @@ export const LongforItemWrapper = styled.div`
   width: 20%;
 
   .inner {
-    position: relative;
     padding: 8px;
+
+    .city-info {
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+    }
   }
 
   .cover {
     width: 100%;
-    border-radius: 3px;
   }
 
   .bg-cover {
     position: absolute;
-    left: 8px;
-    right: 8px;
+    left: 0;
+    right: 0;
     bottom: 0;
     height: 60%;
-    border-radius: 3px;
     background-image: linear-gradient(
       -180deg,
       rgba(0, 0, 0, 0) 3%,

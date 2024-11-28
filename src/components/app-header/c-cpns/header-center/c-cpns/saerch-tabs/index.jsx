@@ -1,5 +1,3 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { memo, useState } from 'react';
 import { TabsWrapper } from './style';
 
@@ -17,7 +15,7 @@ const SearchTabs = memo(props => {
       {titles.map((item, index) => {
         return (
           <div
-            className={classNames('item', { active: currentIndex === index })}
+            className={`item ${currentIndex === index ? 'active' : ''}`}
             key={item}
             onClick={e => itemClickHandle(index)}
           >
@@ -29,9 +27,5 @@ const SearchTabs = memo(props => {
     </TabsWrapper>
   );
 });
-
-SearchTabs.propTypes = {
-  titles: PropTypes.array,
-};
 
 export default SearchTabs;
