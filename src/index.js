@@ -12,12 +12,12 @@ import store from './store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
+    <Provider store={store}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ThemeProvider theme={theme}>
           <RouterProvider router={router} />
-        </Provider>
-      </ThemeProvider>
-    </Suspense>
+        </ThemeProvider>
+      </Suspense>
+    </Provider>
   </React.StrictMode>
 );
