@@ -8,14 +8,12 @@ import Indicator from '@/base-ui/indicator';
 
 const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
   const carouselRef = useRef();
-
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const controlClickHandle = useCallback(
     (e, isNext) => {
       e.stopPropagation();
       isNext ? carouselRef.current.next() : carouselRef.current.prev();
-
       let newIndex = isNext ? selectedIndex + 1 : selectedIndex - 1;
       const length = itemData.picture_urls.length;
       if (newIndex >= length) {

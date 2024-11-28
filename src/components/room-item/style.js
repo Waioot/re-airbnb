@@ -67,7 +67,7 @@ export const ItemWrapper = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20%;
+        width: 14.29%;
 
         .dot {
           width: 6px;
@@ -137,7 +137,7 @@ export const ItemWrapper = styled.div`
     }
 
     .MuiRating-decimal {
-      margin-right: -3px;
+      margin-right: -2px;
     }
   }
 `;
