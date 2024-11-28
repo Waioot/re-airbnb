@@ -1,5 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { changeHeaderConfigAction } from '@/store/modules/main';
 import { HomeWrapper } from './style';
 import HomeBanner from './c-cpns/home-banner';
 import HomeSectionV1 from './c-cpns/home-section-v1';
@@ -35,6 +36,7 @@ const Home = memo(() => {
   // 派发异步事件： 发送网络请求
   useEffect(() => {
     dispatch(fetchHomeDataAction());
+    dispatch(changeHeaderConfigAction({ isFixed: true }));
   }, [dispatch]);
 
   return (

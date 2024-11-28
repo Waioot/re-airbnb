@@ -14,6 +14,7 @@ export const CenterWrapper = styled.div`
     cursor: pointer;
 
     ${props => props.theme.mixin.boxShadow}
+
     .text {
       padding: 0 16px;
       color: #222;
@@ -30,6 +31,20 @@ export const CenterWrapper = styled.div`
       border-radius: 50%;
       color: #fff;
       background-color: ${props => props.theme.color.primary};
+    }
+  }
+
+  .search-detail {
+    position: relative;
+    transform-origin: 50% 0;
+    will-change: transform, opacity;
+    /* transition: all 250ms linear; */
+
+    .infos {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 `;

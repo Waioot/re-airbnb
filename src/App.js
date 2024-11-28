@@ -1,13 +1,11 @@
-import React, { memo, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import React, { memo } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import AppHeader from '@/components/app-header';
 import AppFooter from '@/components/app-footer';
+import useScrollTop from '@/hooks/useScrollTop';
 const App = memo(() => {
-  const location = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+  useScrollTop();
   return (
     <div className='app'>
       {/* 通用导航栏 */}
