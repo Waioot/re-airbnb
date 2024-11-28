@@ -20,7 +20,11 @@ const DetailPictures = memo(({ detailInfo }) => {
         <div className='right'>
           {detailInfo.picture_urls?.slice(1, 5).map(url => {
             return (
-              <div className='item' onClick={e => showPictureBrowser(true)}>
+              <div
+                className='item'
+                key={url}
+                onClick={e => showPictureBrowser(true)}
+              >
                 <img src={url} alt='' />
                 <div className='cover'></div>
               </div>

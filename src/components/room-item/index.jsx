@@ -12,7 +12,8 @@ const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const controlClickHandle = useCallback(
-    isNext => {
+    (e, isNext) => {
+      e.stopPropagation();
       isNext ? carouselRef.current.next() : carouselRef.current.prev();
 
       let newIndex = isNext ? selectedIndex + 1 : selectedIndex - 1;
@@ -28,7 +29,8 @@ const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
     [selectedIndex, itemData]
   );
 
-  const handleClickRoom = item => {
+  const handleClickRoom = (e, item) => {
+    e.stopPropagation();
     if (roomClick) {
       roomClick(item);
     }
@@ -37,7 +39,7 @@ const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
   return (
     <ItemWrapper
       itemWidth={itemWidth}
-      onClick={() => handleClickRoom(itemData)}
+      onClick={e => handleClickRoom(e, itemData)}
     >
       <div className='inner'>
         {!itemData?.picture_urls ? (
@@ -49,13 +51,13 @@ const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
             <div className='control'>
               <div
                 className='btn left'
-                onClick={e => controlClickHandle(false)}
+                onClick={e => controlClickHandle(e, false)}
               >
                 <IconArrowLeft width='24' height='24' />
               </div>
               <div
                 className='btn right'
-                onClick={e => controlClickHandle(true)}
+                onClick={e => controlClickHandle(e, true)}
               >
                 <IconArrowRight width='24' height='24' />
               </div>
