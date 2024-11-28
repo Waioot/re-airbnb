@@ -4,7 +4,9 @@ export const LeftWrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  color: ${props => props.theme.color.primary};
+  color: ${props =>
+    props.theme.isAlpha ? '#fff' : props.theme.textColor.primary};
+
   .logo {
     height: 48px;
     cursor: pointer;

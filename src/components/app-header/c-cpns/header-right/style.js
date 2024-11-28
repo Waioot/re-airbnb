@@ -12,6 +12,9 @@ export const RightWrapper = styled.div`
 
   .btns {
     display: flex;
+    box-sizing: border-box;
+    color: ${props =>
+      props.theme.isAlpha ? '#fff' : props.theme.textColor.primary};
   }
 
   .btn {
@@ -22,7 +25,8 @@ export const RightWrapper = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: #f5f5f5;
+      background-color: ${props =>
+        props.theme.isAlpha ? 'rgba(255,255,255,0.1)' : '#f5f5f5'};
     }
   }
   .profile {

@@ -5,6 +5,7 @@ const mainSlice = createSlice({
   initialState: {
     headerConfig: {
       isFixed: false,
+      topAlpha: false, // 首页头部是否使用透明
     },
   },
   reducers: {

@@ -36,7 +36,7 @@ const Home = memo(() => {
   // 派发异步事件： 发送网络请求
   useEffect(() => {
     dispatch(fetchHomeDataAction());
-    dispatch(changeHeaderConfigAction({ isFixed: true }));
+    dispatch(changeHeaderConfigAction({ isFixed: true, topAlpha: true }));
   }, [dispatch]);
 
   return (

@@ -13,7 +13,7 @@ const Detail = memo(() => {
   });
 
   useEffect(() => {
-    dispatch(changeHeaderConfigAction({ isFixed: false }));
+    dispatch(changeHeaderConfigAction({ isFixed: false, topAlpha: false }));
   }, [dispatch]);
 
   return (
