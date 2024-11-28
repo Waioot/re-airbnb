@@ -1,10 +1,16 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import App from '@/App';
-import Home from '@/views/home';
-import Entire from '@/views/entire';
-import Detail from '@/views/detail';
-import Demo from '@/views/demo';
+// import Home from '@/views/home';
+// import Entire from '@/views/entire';
+// import Detail from '@/views/detail';
+// import Demo from '@/views/demo';
+import { lazy } from 'react';
+const Home = lazy(() => import('@/views/home'));
+const Entire = lazy(() => import('@/views/entire'));
+const Detail = lazy(() => import('@/views/detail'));
+const Demo = lazy(() => import('@/views/demo'));
+
 const router = createBrowserRouter([
   {
     path: '/',
