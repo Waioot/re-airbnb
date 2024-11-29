@@ -72,7 +72,7 @@ export const PicturesWrapper = styled.div`
     }
   }
 
-  .show-btn {
+  .show-all {
     position: absolute;
     z-index: 99;
     right: 15px;
@@ -82,5 +82,8 @@ export const PicturesWrapper = styled.div`
     border-radius: 4px;
     background-color: #fff;
     cursor: pointer;
+  }
+
+  .show-btn {
   }
 `;

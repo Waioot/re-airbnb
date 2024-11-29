@@ -1,6 +1,8 @@
 import { memo, useState } from 'react';
 import { PicturesWrapper } from './style';
 import PictureBrowser from '@/base-ui/picture-browser';
+import IconShowAll from '@/assets/svg/icon_showAll';
+import IconButton from '@/components/icon-button';
 
 const DetailPictures = memo(({ detailInfo }) => {
   const [showBrower, setShowBrower] = useState(false);
@@ -32,9 +34,20 @@ const DetailPictures = memo(({ detailInfo }) => {
           })}
         </div>
       </div>
-      <div className='show-btn' onClick={e => showPictureBrowser(true)}>
-        查看图片
+      <div className='show-all' onClick={e => showPictureBrowser(true)}>
+        <IconButton
+          icon={<IconShowAll />}
+          text='查看全部图片'
+          textStyle={{ marginLeft: '8px' }}
+        />
+        {/* <div className='show-btn'>
+          <span>查看全部图片</span>
+          <span className='show-all-icon'>
+            <IconShowAll />
+          </span>
+        </div> */}
       </div>
+
       {showBrower && (
         <PictureBrowser
           pictureUrls={detailInfo.picture_urls}

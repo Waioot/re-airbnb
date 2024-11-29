@@ -23,7 +23,7 @@ export const RoomDetailWapper = styled.div`
       display: flex;
       gap: 20px;
 
-      .action-item {
+      /* .action-item {
         display: flex;
         align-items: center;
 
@@ -40,7 +40,7 @@ export const RoomDetailWapper = styled.div`
           line-height: 1;
           text-decoration: underline;
         }
-      }
+      } */
     }
   }
 `;
