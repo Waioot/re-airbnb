@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { RoomDetailWapper } from './style';
 import IconShare from '@/assets/svg/icon_share';
-import IconFavorite from '@/assets/svg/utils/icon_favorite';
-import IconTranslate from '@/assets/svg/utils/icon_translate';
+import IconTranslate from '@/assets/svg/icon_translate';
+import IconFavorite from '@/assets/svg/icon_favorite';
 const RoomDetail = memo(() => {
   return (
     <RoomDetailWapper>
