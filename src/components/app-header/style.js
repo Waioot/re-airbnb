@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
-  height: 80px;
-  padding: 0 80px;
-  box-sizing: border-box;
+ 
   
-
   &.fixed {
     position: fixed;
     z-index: 99;
@@ -15,6 +12,11 @@ export const HeaderWrapper = styled.div`
   }
 
   .content {
+
+    height: 80px;
+    padding: 0 80px;
+    box-sizing: border-box;
+
     position: relative;
     z-index: 19;
     transition: all 250ms ease;
