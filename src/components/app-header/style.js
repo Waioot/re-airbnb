@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
+  height: 80px;
+  padding: 0 80px;
+  box-sizing: border-box;
+  
+
   &.fixed {
     position: fixed;
     z-index: 99;
