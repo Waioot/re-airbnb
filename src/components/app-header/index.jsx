@@ -1,5 +1,5 @@
 import { memo, useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import { HeaderWrapper, SearchWrapper } from './style';
@@ -11,12 +11,20 @@ import useScrollPosition from '@/hooks/useScrollPosition';
 const AppHeader = memo(() => {
   const [isSearch, setIsSearch] = useState(false);
 
-  const { isFixed, topAlpha } = useSelector(state => {
-    return {
+  const { isFixed } = useSelector(
+    state => ({
       isFixed: state.main.headerConfig.isFixed,
-      topAlpha: state.main.headerConfig.topAlpha,
-    };
-  });
+    }),
+    [shallowEqual]
+  );
+  const { topAlpha } = useSelector(
+    state => {
+      return {
+        topAlpha: state.main.headerConfig.topAlpha,
+      };
+    },
+    [shallowEqual]
+  );
 
   const { scrollY } = useScrollPosition();
   const prevY = useRef(0);
@@ -50,7 +58,7 @@ const AppHeader = memo(() => {
             <HeaderRight />
           </div>
           <div className='search-area'>
-            <SearchWrapper isSearch={isAlpha || isSearch} />
+            <SearchWrapper $isSearch={isAlpha || isSearch} />
           </div>
         </div>
         {isSearch ? (

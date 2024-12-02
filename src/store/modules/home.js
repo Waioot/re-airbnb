@@ -83,12 +83,24 @@ const homeSlice = createSlice({
     });
     builder.addCase(fetchHomeDataAction.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.goodPriceInfo = payload.goodPriceRes;
-      state.highScoreInfo = payload.highScoreRes;
-      state.discountInfo = payload.discountRes;
-      state.recommendInfo = payload.recommendRes;
-      state.longforInfo = payload.longforRes;
-      state.plusInfo = payload.plusRes;
+      if (state.goodPriceInfo !== payload.goodPriceRes) {
+        state.goodPriceInfo = payload.goodPriceRes;
+      }
+      if (state.highScoreInfo !== payload.highScoreRes) {
+        state.highScoreInfo = payload.highScoreRes;
+      }
+      if (state.discountInfo !== payload.discountRes) {
+        state.discountInfo = payload.discountRes;
+      }
+      if (state.recommendInfo !== payload.recommendRes) {
+        state.recommendInfo = payload.recommendRes;
+      }
+      if (state.longforInfo !== payload.longforRes) {
+        state.longforInfo = payload.longforRes;
+      }
+      if (state.plusInfo !== payload.plusRes) {
+        state.plusInfo = payload.plusRes;
+      }
     });
   },
 });

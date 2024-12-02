@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeHeaderConfigAction } from '@/store/modules/main';
 import { HomeWrapper } from './style';
 import HomeBanner from './c-cpns/home-banner';
@@ -13,27 +13,13 @@ import { isEmptyObject } from '@/utils';
 const Home = memo(() => {
   const dispatch = useDispatch();
 
-  // 从 redux 中获取数据
-  const {
-    goodPriceInfo,
-    highScoreInfo,
-    discountInfo,
-    recommendInfo,
-    longforInfo,
-    plusInfo,
-  } = useSelector(
-    state => ({
-      goodPriceInfo: state.home.goodPriceInfo,
-      highScoreInfo: state.home.highScoreInfo,
-      discountInfo: state.home.discountInfo,
-      recommendInfo: state.home.recommendInfo,
-      longforInfo: state.home.longforInfo,
-      plusInfo: state.home.plusInfo,
-    }),
-    shallowEqual
-  );
+  const goodPriceInfo = useSelector(state => state.home.goodPriceInfo);
+  const highScoreInfo = useSelector(state => state.home.highScoreInfo);
+  const discountInfo = useSelector(state => state.home.discountInfo);
+  const recommendInfo = useSelector(state => state.home.recommendInfo);
+  const longforInfo = useSelector(state => state.home.longforInfo);
+  const plusInfo = useSelector(state => state.home.plusInfo);
 
-  // 派发异步事件： 发送网络请求
   useEffect(() => {
     dispatch(fetchHomeDataAction());
     dispatch(changeHeaderConfigAction({ isFixed: true, topAlpha: true }));

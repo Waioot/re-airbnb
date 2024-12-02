@@ -6,7 +6,7 @@ import IconArrowLeft from '@/assets/svg/icon-arrow-left';
 import IconArrowRight from '@/assets/svg/icon-arrow-right';
 import Indicator from '@/base-ui/indicator';
 
-const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
+const RoomItem = memo(({ itemData, $itemWidth = '25%', roomClick }) => {
   const carouselRef = useRef();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -36,7 +36,7 @@ const RoomItem = memo(({ itemData, itemWidth = '25%', roomClick }) => {
 
   return (
     <ItemWrapper
-      itemWidth={itemWidth}
+      $itemWidth={$itemWidth}
       onClick={e => handleClickRoom(e, itemData)}
     >
       <div className='inner'>

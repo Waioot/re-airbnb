@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
- 
-  
   &.fixed {
     position: fixed;
     z-index: 99;
@@ -12,7 +10,6 @@ export const HeaderWrapper = styled.div`
   }
 
   .content {
-
     height: 80px;
     padding: 0 80px;
     box-sizing: border-box;
@@ -47,5 +44,5 @@ export const HeaderWrapper = styled.div`
 
 export const SearchWrapper = styled.div`
   transition: height 250ms ease;
-  height: ${props => (props.isSearch ? '100px' : '0')};
+  height: ${props => (props.$isSearch ? '100px' : '0')};
 `;
