@@ -158,7 +158,7 @@ export const DetailRoomWapper = styled.div`
       }
 
       .card-content {
-        padding-top: 24px;
+        margin-top: 24px;
       }
     }
   }
@@ -170,7 +170,7 @@ export const DetailRoomWapper = styled.div`
     flex-direction: column;
     justify-content: center; // 主轴居中
     align-items: center; // 交叉轴居中
-    height: 100%; // 需要设置高度才能垂直居中生效
+    /* height: 100%; // 需要设置高度才能垂直居中生效 */
     border-radius: 12px;
     border: 1px solid #ddd;
     .order {

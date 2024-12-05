@@ -105,6 +105,15 @@ export const HostCardWrapper = styled.div`
           .item-icon {
             font-size: 12px;
           }
+          > svg {
+            width: 14px;
+            height: 14px;
+          }
+
+          > .MuiSvgIcon-root {
+            font-size: 22px;
+            line-height: 1;
+          }
         }
       }
     }
