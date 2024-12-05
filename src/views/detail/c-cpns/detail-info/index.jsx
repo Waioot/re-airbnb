@@ -1,12 +1,12 @@
 import { memo } from 'react';
-import { RoomDetailWapper } from './style';
+import { RoomDetailWapperHeader } from './style';
 import IconShare from '@/assets/svg/icon_share';
 import IconTranslate from '@/assets/svg/icon_translate';
 import IconFavorite from '@/assets/svg/icon_favorite';
 import IconButton from '@/components/icon-button';
-const RoomDetail = memo(() => {
+const RoomDetailHeader = memo(() => {
   return (
-    <RoomDetailWapper>
+    <RoomDetailWapperHeader>
       <div className='room-detail'>
         {/* <div className='title'>
           <span className='title-icon'>
@@ -46,8 +46,8 @@ const RoomDetail = memo(() => {
           </div> */}
         </div>
       </div>
-    </RoomDetailWapper>
+    </RoomDetailWapperHeader>
   );
 });
 
-export default RoomDetail;
+export default RoomDetailHeader;

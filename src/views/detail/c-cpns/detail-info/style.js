@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const RoomDetailWapper = styled.div`
+export const RoomDetailWapperHeader = styled.div`
   padding-top: 24px;
   .room-detail {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .title {
       display: flex;

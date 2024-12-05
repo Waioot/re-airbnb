@@ -4,7 +4,8 @@ import { changeHeaderConfigAction } from '@/store/modules/main';
 
 import { DetailWrapper } from './style';
 import DetailPictures from './c-cpns/detail-pictures';
-import RoomDetail from './c-cpns/detail-info';
+import RoomDetailHeader from './c-cpns/detail-info';
+import DetailRoom from './c-cpns/detail-room';
 const Detail = memo(() => {
   const dispatch = useDispatch();
   const { detailInfo } = useSelector(state => {
@@ -19,8 +20,9 @@ const Detail = memo(() => {
 
   return (
     <DetailWrapper>
-      <RoomDetail />
+      <RoomDetailHeader />
       <DetailPictures detailInfo={detailInfo} />
+      <DetailRoom detailInfo={detailInfo} />
     </DetailWrapper>
   );
 });
