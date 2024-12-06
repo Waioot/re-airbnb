@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const DetailRoomWapper = styled.div`
   display: grid;
@@ -164,53 +164,11 @@ export const DetailRoomWapper = styled.div`
   }
 
   .room-right {
-    padding: 0 45px;
-    margin-top: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; // 主轴居中
-    align-items: center; // 交叉轴居中
-    /* height: 100%; // 需要设置高度才能垂直居中生效 */
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    .order {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 24px;
-      border-radius: 12px;
-
-      .order-title {
-        width: 100%;
-        display: flex;
-        align-items: center; /* 垂直居中对齐 */
-        justify-content: center; /* 水平居中对齐 */
-        font-size: 1.375rem;
-        font-weight: 500;
-        padding-bottom: 6px;
-        padding-top: 10px;
-        margin-top: -2px;
-        margin-bottom: 4px;
-        color: #222;
-      }
-
-      .order-button {
-        width: 100%;
-        display: flex;
-        align-items: center; /* 垂直居中对齐 */
-        justify-content: center; /* 水平居中对齐 */
-        padding: 14px 24px;
-        background-color: #b0b0b0;
-        border-radius: 12px;
-        color: #fff;
-        font-size: 16px;
-        font-weight: 500;
-
-        &:hover {
-          outline: 1px solid #036cdb;
-        }
-      }
-    }
+    box-sizing: border-box;
+    padding: 24px 0 0 45px;
+    width: 100%;
+    position: sticky;
+    height: fit-content;
+    top: 80px;
   }
 `;

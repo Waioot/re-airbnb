@@ -7,6 +7,7 @@ import SportsGymnasticsOutlinedIcon from '@mui/icons-material/SportsGymnasticsOu
 import { DetailRoomWapper } from './style';
 import IconStar from '@/assets/svg/icon_star';
 import HostCard from '@/components/host-card';
+import OrderCard from '../order-card';
 
 const DetailRoom = memo(({ detailInfo }) => {
   console.log(detailInfo);
@@ -149,10 +150,7 @@ const DetailRoom = memo(({ detailInfo }) => {
       </div>
 
       <div className='room-right'>
-        <div className='order'>
-          <div className='order-title'>订单</div>
-          <div className='order-button'>申请</div>
-        </div>
+        <OrderCard />
       </div>
     </DetailRoomWapper>
   );
