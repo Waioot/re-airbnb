@@ -5,148 +5,45 @@ import IconArrowLeft from '@/assets/svg/icon-arrow-left';
 import IconArrowRight from '@/assets/svg/icon-arrow-right';
 
 const DatePicker = memo(
-  ({
-    isOpen = false,
-    startDate,
-    endDate,
-    setStartDate,
-    setEndDate,
-    onClose,
-    onChange,
-  }) => {
-    // 当前显示的月份（左侧日历）
+  ({ startDate, endDate, setStartDate, setEndDate, onClose }) => {
     const [currentMonth, setCurrentMonth] = useState(dayjs());
 
-    // 生成日历数据
-    const generateCalendarDays = month => {
-      const daysInMonth = month.daysInMonth();
-      const days = [];
-      const firstDayOfMonth = month.startOf('month');
-      const firstDayWeek = firstDayOfMonth.day() || 7;
-
-      // 填充前面的空白
-      for (let i = 1; i < firstDayWeek; i++) {
-        days.push({ isEmpty: true });
-      }
-
-      // 添加当月的日期
-      for (let i = 1; i <= daysInMonth; i++) {
-        const currentDay = month.date(i);
-        const isDisabled = currentDay.isBefore(dayjs(), 'day');
-
-        days.push({
-          date: currentDay,
-          isCurrentMonth: true,
-          isToday: currentDay.isSame(dayjs(), 'day'),
-          dayOfMonth: i,
-          isDisabled,
-          isStartDate: startDate && currentDay.isSame(startDate, 'day'),
-          isEndDate: endDate && currentDay.isSame(endDate, 'day'),
-          isInRange:
-            startDate &&
-            endDate &&
-            currentDay.isAfter(startDate) &&
-            currentDay.isBefore(endDate),
-        });
-      }
-
-      // 填充后面的空白
-      const totalDays = 42;
-      while (days.length < totalDays) {
-        days.push({ isEmpty: true });
-      }
-
-      return days;
+    const handleMonthChange = direction => {
+      setCurrentMonth(prev =>
+        direction === 'prev' ? prev.subtract(1, 'month') : prev.add(1, 'month')
+      );
     };
 
-    // 处理日期点击
     const handleDateClick = day => {
-      if (day.isDisabled || day.isEmpty) return;
+      if (day.isBefore(dayjs(), 'day')) return;
 
       if (!startDate || (startDate && endDate)) {
-        // 开始新的选择
-        setStartDate(day.date);
+        setStartDate(day);
         setEndDate(null);
+      } else if (day.isBefore(startDate)) {
+        setEndDate(startDate);
+        setStartDate(day);
       } else {
-        // 已有开始日期，选择结束日期
-        if (day.date.isBefore(startDate)) {
-          // 如果点击的日期在开始日期之前，交换开始和结束日期
-          setEndDate(startDate);
-          setStartDate(day.date);
-        } else {
-          setEndDate(day.date);
-        }
+        setEndDate(day);
       }
     };
 
-    // 处理清除
-    const handleClear = () => {
-      setStartDate(null);
-      setEndDate(null);
-      onChange?.(null, null);
-    };
-
-    // 处理关闭
-    const handleClose = () => {
-      onClose?.();
-      if (startDate && endDate) {
-        onChange?.(startDate, endDate);
-      }
-    };
-
-    // 渲染日历主体
-    const renderCalendarBody = month => {
-      const days = generateCalendarDays(month);
-      return (
-        <div className='calendar-body'>
-          {days.map((day, index) => (
-            <div
-              key={index}
-              className={`calendar-day 
-              ${day.isEmpty ? 'empty' : ''} 
-              ${day.isToday ? 'today' : ''} 
-              ${day.isStartDate ? 'start-date' : ''}
-              ${day.isEndDate ? 'end-date' : ''}
-              ${day.isInRange ? 'in-range' : ''}
-              ${day.isDisabled ? 'disabled' : ''}`}
-              onClick={() => handleDateClick(day)}
-            >
-              {!day.isEmpty && day.dayOfMonth}
-            </div>
-          ))}
-        </div>
-      );
-    };
-
-    // 处理月份切换
-    const handleMonthChange = direction => {
-      setCurrentMonth(prev => {
-        if (direction === 'prev') {
-          return prev.subtract(1, 'month');
-        }
-        return prev.add(1, 'month');
-      });
-    };
-
-    // 渲染日历头部
-    const renderHeader = () => {
-      return (
-        <div className='calendar-header'>
-          <div className='switch-btn' onClick={() => handleMonthChange('prev')}>
+    const renderHeader = (month, isLeft) => (
+      <div className='calendar-header'>
+        {isLeft && (
+          <button onClick={() => handleMonthChange('prev')}>
             <IconArrowLeft />
-          </div>
-          <div className='month-info'>
-            <span>{currentMonth.format('YYYY 年 M 月')}</span>
-            <span>{currentMonth.add(1, 'month').format('YYYY 年 M 月')}</span>
-          </div>
-          <div className='switch-btn' onClick={() => handleMonthChange('next')}>
+          </button>
+        )}
+        <span>{month.format('YYYY 年 M 月')}</span>
+        {!isLeft && (
+          <button onClick={() => handleMonthChange('next')}>
             <IconArrowRight />
-          </div>
-        </div>
-      );
-    };
+          </button>
+        )}
+      </div>
+    );
 
-    // 渲染星期标题
     const renderWeekDays = () => {
       const weekDays = ['一', '二', '三', '四', '五', '六', '日'];
       return (
@@ -160,24 +57,62 @@ const DatePicker = memo(
       );
     };
 
+    const renderDays = month => {
+      const daysInMonth = month.daysInMonth();
+      const firstDayOfMonth = month.startOf('month').day() || 7;
+      const days = [];
+
+      for (let i = 1; i < firstDayOfMonth; i++) {
+        days.push(<div key={`empty-${i}`} className='empty-day'></div>);
+      }
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const currentDay = month.date(i);
+        const isDisabled = currentDay.isBefore(dayjs(), 'day');
+        const isSelected =
+          (startDate && currentDay.isSame(startDate, 'day')) ||
+          (endDate && currentDay.isSame(endDate, 'day'));
+
+        days.push(
+          <div
+            key={i}
+            className={`day ${isDisabled ? 'disabled' : ''} ${
+              isSelected ? 'selected' : ''
+            }`}
+            onClick={() => handleDateClick(currentDay)}
+          >
+            {i}
+          </div>
+        );
+      }
+
+      return <div className='calendar-days'>{days}</div>;
+    };
+
+    const handleClear = () => {
+      setStartDate(null);
+      setEndDate(null);
+    };
+
     return (
       <DatePickerWrapper>
-        {renderHeader()}
         <div className='calendars-wrapper'>
           <div className='calendar'>
+            {renderHeader(currentMonth, true)}
             {renderWeekDays()}
-            {renderCalendarBody(currentMonth)}
+            {renderDays(currentMonth)}
           </div>
           <div className='calendar'>
+            {renderHeader(currentMonth.add(1, 'month'), false)}
             {renderWeekDays()}
-            {renderCalendarBody(currentMonth.add(1, 'month'))}
+            {renderDays(currentMonth.add(1, 'month'))}
           </div>
         </div>
         <div className='footer'>
           <button className='btn-clear' onClick={handleClear}>
             清除
           </button>
-          <button className='btn-close' onClick={handleClose}>
+          <button className='btn-close' onClick={onClose}>
             关闭
           </button>
         </div>

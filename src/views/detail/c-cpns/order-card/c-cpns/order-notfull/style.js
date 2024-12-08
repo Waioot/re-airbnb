@@ -67,43 +67,8 @@ export const OrderNotFullWrapper = styled.div`
           color: #222;
         }
       }
-
       .calendar-wrapper {
-        position: absolute;
-        top: calc(100% + 12px);
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 999;
-        background-color: #fff;
-        border-radius: 16px;
-        box-shadow: 0 0 0 1px rgb(0 0 0 / 04%), 0 8px 28px rgba(0, 0, 0, 0.28);
-        padding: 24px 32px;
-        width: 600px;
-        max-width: calc(100vw - 48px);
-
-        .calendars-container {
-          display: flex;
-          gap: 24px;
-          justify-content: center;
-
-          & > div {
-            .MuiDayCalendar-slideTransition {
-              overflow: hidden !important;
-            }
-          }
-        }
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: -8px;
-          left: 50%;
-          transform: translateX(-50%) rotate(45deg);
-          width: 16px;
-          height: 16px;
-          background-color: #fff;
-          box-shadow: -1px -1px 0 0 rgb(0 0 0 / 04%);
-        }
+        position: relative;
       }
     }
     .label {
