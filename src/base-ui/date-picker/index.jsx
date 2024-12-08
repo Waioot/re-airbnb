@@ -72,13 +72,25 @@ const DatePicker = memo(
         const isSelected =
           (startDate && currentDay.isSame(startDate, 'day')) ||
           (endDate && currentDay.isSame(endDate, 'day'));
+        const isInRange =
+          startDate &&
+          endDate &&
+          ((currentDay.isAfter(startDate) && currentDay.isBefore(endDate)) ||
+           currentDay.isSame(startDate, 'day') ||
+           currentDay.isSame(endDate, 'day'));
+
+        const isRangeStart = startDate && currentDay.isSame(startDate, 'day');
+        const isRangeEnd = endDate && currentDay.isSame(endDate, 'day');
 
         days.push(
           <div
             key={i}
-            className={`day ${isDisabled ? 'disabled' : ''} ${
-              isSelected ? 'selected' : ''
-            }`}
+            className={`day 
+              ${isDisabled ? 'disabled' : ''} 
+              ${isSelected ? 'selected' : ''} 
+              ${isInRange ? 'in-range' : ''}
+              ${isRangeStart ? 'range-start' : ''}
+              ${isRangeEnd ? 'range-end' : ''}`}
             onClick={() => handleDateClick(currentDay)}
           >
             {i}

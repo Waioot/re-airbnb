@@ -64,15 +64,16 @@ export const DatePickerWrapper = styled.div`
     }
   }
 
-  .calendar-weeks {
-    padding-bottom: 12px;
-  }
-
   .calendar-weeks,
   .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
+    row-gap: 4px;
+  }
+
+  .calendar-weeks {
+    padding-bottom: 12px;
   }
 
   .week-day {
@@ -86,29 +87,83 @@ export const DatePickerWrapper = styled.div`
   .empty-day {
     height: 40px;
     line-height: 40px;
-    margin: 2px 0;
+    padding: 0;
+    position: relative;
   }
 
   .day {
     cursor: pointer;
     position: relative;
-    width: 40px; /* 固定宽度 */
-    height: 40px; /* 固定高度 */
-    line-height: 40px; /* 确保文本垂直居中 */
-    box-sizing: border-box; /* 包含内边距和边框 */
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover {
-      border: 1px solid #000;
+    z-index: 2;
+  }
+
+  .day:not(.selected):hover {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 1.5px solid #000;
       border-radius: 50%;
     }
   }
 
+  .day.in-range {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background-color: #f7f7f7;
+      z-index: -2;
+    }
+  }
+
+  .day.range-start {
+    &::before {
+      left: 50%;
+      right: 0;
+    }
+  }
+
+  .day.range-end {
+    &::before {
+      left: 0;
+      right: 50%;
+    }
+  }
+
   .day.selected {
-    background-color: #000;
-    border-radius: 50%;
     color: #fff;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #000;
+      border-radius: 50%;
+      z-index: -1;
+      width: 40px;
+      height: 40px;
+    }
   }
 
   .day.disabled {
