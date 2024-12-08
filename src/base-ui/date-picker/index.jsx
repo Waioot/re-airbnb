@@ -84,6 +84,11 @@ const DatePicker = memo(
         const isRangeStart = startDate && currentDay.isSame(startDate, 'day');
         const isRangeEnd = endDate && currentDay.isSame(endDate, 'day');
 
+        // 计算在当前行的位置
+        const currentPosition = days.length % 7;
+        const isRowStart = currentPosition === 0;
+        const isRowEnd = currentPosition === 6;
+
         days.push(
           <div
             key={i}
@@ -92,7 +97,9 @@ const DatePicker = memo(
               ${isSelected ? 'selected' : ''} 
               ${isInRange ? 'in-range' : ''}
               ${isRangeStart ? 'range-start' : ''}
-              ${isRangeEnd ? 'range-end' : ''}`}
+              ${isRangeEnd ? 'range-end' : ''}
+              ${isRowStart ? 'row-start' : ''}
+              ${isRowEnd ? 'row-end' : ''}`}
             onClick={() => handleDateClick(currentDay)}
           >
             {i}

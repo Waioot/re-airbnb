@@ -145,12 +145,29 @@ export const DatePickerWrapper = styled.div`
       background-color: #f7f7f7;
       z-index: -2;
     }
+
+    &.row-start::before {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    &.row-end::before {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
   }
 
   .day.range-start {
     &::before {
       left: 50%;
       right: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &.row-end::before {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
   }
 
@@ -158,6 +175,13 @@ export const DatePickerWrapper = styled.div`
     &::before {
       left: 0;
       right: 50%;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.row-start::before {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
   }
 
