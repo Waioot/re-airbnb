@@ -1,6 +1,8 @@
 import React, { memo, useState } from 'react';
 import { DatePickerWrapper } from './style';
 import dayjs from 'dayjs';
+import IconArrowLeft from '@/assets/svg/icon-arrow-left';
+import IconArrowRight from '@/assets/svg/icon-arrow-right';
 
 const DatePicker = memo(
   ({
@@ -131,14 +133,14 @@ const DatePicker = memo(
       return (
         <div className='calendar-header'>
           <div className='switch-btn' onClick={() => handleMonthChange('prev')}>
-            &lt;
+            <IconArrowLeft />
           </div>
           <div className='month-info'>
             <span>{currentMonth.format('YYYY 年 M 月')}</span>
             <span>{currentMonth.add(1, 'month').format('YYYY 年 M 月')}</span>
           </div>
           <div className='switch-btn' onClick={() => handleMonthChange('next')}>
-            &gt;
+            <IconArrowRight />
           </div>
         </div>
       );

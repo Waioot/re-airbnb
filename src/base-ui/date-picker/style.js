@@ -85,7 +85,7 @@ export const DatePickerWrapper = styled.div`
         }
 
         &.in-range {
-          background-color: #f7f7f7;
+          background-color: transparent;
           position: relative;
 
           &::after {
@@ -99,8 +99,11 @@ export const DatePickerWrapper = styled.div`
             z-index: -2;
           }
 
-          &:hover::before {
-            background-color: #eee;
+          &:hover {
+            &::before {
+              background-color: #eee;
+              border-color: transparent;
+            }
           }
         }
 
@@ -122,8 +125,10 @@ export const DatePickerWrapper = styled.div`
             bottom: 0;
             background-color: #f7f7f7;
             z-index: -2;
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
+          }
+
+          &:hover::before {
+            background-color: #000;
           }
         }
 
@@ -145,26 +150,14 @@ export const DatePickerWrapper = styled.div`
             bottom: 0;
             background-color: #f7f7f7;
             z-index: -2;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
+          }
+
+          &:hover::before {
+            background-color: #000;
           }
         }
 
-        &.in-range:first-child {
-          &::after {
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-          }
-        }
-
-        &.in-range:last-child {
-          &::after {
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-          }
-        }
-
-        &:hover:not(.disabled)::before {
+        &:hover:not(.disabled):not(.start-date):not(.end-date)::before {
           border-color: #222;
         }
 
