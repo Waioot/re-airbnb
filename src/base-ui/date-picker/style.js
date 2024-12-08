@@ -83,6 +83,19 @@ export const DatePickerWrapper = styled.div`
     font-weight: 500;
   }
 
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 4px;
+    padding: 0 12px;
+  }
+
+  .empty-day {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+  }
+
   .day,
   .empty-day {
     height: 40px;

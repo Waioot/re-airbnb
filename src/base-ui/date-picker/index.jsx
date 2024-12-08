@@ -62,10 +62,12 @@ const DatePicker = memo(
       const firstDayOfMonth = month.startOf('month').day() || 7;
       const days = [];
 
+      // 添加上个月的日期
       for (let i = 1; i < firstDayOfMonth; i++) {
         days.push(<div key={`empty-${i}`} className='empty-day'></div>);
       }
 
+      // 添加当月的日期
       for (let i = 1; i <= daysInMonth; i++) {
         const currentDay = month.date(i);
         const isDisabled = currentDay.isBefore(dayjs(), 'day');
@@ -96,6 +98,13 @@ const DatePicker = memo(
             {i}
           </div>
         );
+      }
+
+      // 添加下个月的日期，确保总是显示6行
+      const totalDays = 42; // 6行 * 7列
+      const remainingDays = totalDays - days.length;
+      for (let i = 1; i <= remainingDays; i++) {
+        days.push(<div key={`next-${i}`} className='empty-day'></div>);
       }
 
       return <div className='calendar-days'>{days}</div>;
