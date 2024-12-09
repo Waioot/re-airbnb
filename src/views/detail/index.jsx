@@ -6,6 +6,7 @@ import { DetailWrapper } from './style';
 import DetailPictures from './c-cpns/detail-pictures';
 import RoomDetailHeader from './c-cpns/detail-info';
 import DetailRoom from './c-cpns/detail-room';
+import RoomLocation from './c-cpns/room-location';
 const Detail = memo(() => {
   const dispatch = useDispatch();
   const { detailInfo } = useSelector(state => {
@@ -23,6 +24,7 @@ const Detail = memo(() => {
       <RoomDetailHeader />
       <DetailPictures detailInfo={detailInfo} />
       <DetailRoom detailInfo={detailInfo} />
+      <RoomLocation />
     </DetailWrapper>
   );
 });
