@@ -150,7 +150,12 @@ const DetailRoom = memo(({ detailInfo }) => {
       </div>
 
       <div className='room-right'>
+        {/* 预定卡片 */}
         <OrderCard />
+        {/* 提示信息 */}
+        <div></div>
+        {/* 举报房源 */}
+        <div></div>
       </div>
     </DetailRoomWapper>
   );

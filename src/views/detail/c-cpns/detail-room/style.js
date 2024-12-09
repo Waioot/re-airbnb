@@ -1,14 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DetailRoomWapper = styled.div`
+  margin-top: 32px;
   display: grid;
-  grid-template-columns: 8fr 4fr;
+  grid-template-columns: minmax(auto, 655px) 1fr;
+  gap: 90px;
 
   .room-left {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    margin-right: 90px;
 
     .room-header {
       padding: 24px 0;
@@ -164,11 +165,9 @@ export const DetailRoomWapper = styled.div`
   }
 
   .room-right {
-    box-sizing: border-box;
-    padding: 24px 0 0 45px;
     width: 100%;
     position: sticky;
-    height: fit-content;
     top: 80px;
+    height: fit-content;
   }
 `;
