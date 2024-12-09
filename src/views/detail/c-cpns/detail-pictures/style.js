@@ -8,11 +8,16 @@ export const PicturesWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
+    height: 430px;
+    gap: 8px;
   }
 
   .left,
   .right {
     width: 50%;
+    height: 100%;
+    overflow: hidden;
 
     .item {
       position: relative;
@@ -43,20 +48,23 @@ export const PicturesWrapper = styled.div`
       }
     }
   }
-
   .left {
-    border-radius: 16px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
   }
 
   .right {
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
+    gap: 8px;
 
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
     .item {
-      width: 50%;
-      height: 50%;
+      width: calc(50% - 4px);
+      height: calc(50% - 4px);
       box-sizing: border-box;
-      border: 1px solid #000;
     }
   }
 
