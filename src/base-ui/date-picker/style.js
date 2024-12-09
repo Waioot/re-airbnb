@@ -7,10 +7,26 @@ export const DatePickerWrapper = styled.div`
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: absolute;
-  /* top: 180px; */
-  top: 300px;
+  top: 180px;
   left: 10px;
   transform: translate(-50%, -50%);
+
+  .picker-head {
+    display: flex;
+    flex-direction: column;
+
+    .picker-head-title {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .from-to {
+      padding-top: 8px;
+      color: #6a6a6a;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
 
   .calendars-wrapper {
     display: flex;
@@ -19,7 +35,6 @@ export const DatePickerWrapper = styled.div`
 
   .calendar {
     width: 280px;
-    padding: 0 12px;
   }
 
   .calendar-header {
@@ -72,10 +87,6 @@ export const DatePickerWrapper = styled.div`
     row-gap: 4px;
   }
 
-  .calendar-weeks {
-    padding-bottom: 12px;
-  }
-
   .week-day {
     font-weight: bold;
     color: #6a6a6a;
@@ -87,7 +98,6 @@ export const DatePickerWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     row-gap: 4px;
-    padding: 0 12px;
   }
 
   .empty-day {
@@ -187,7 +197,7 @@ export const DatePickerWrapper = styled.div`
 
   .day.selected {
     color: #fff;
-    
+
     &::after {
       content: '';
       position: absolute;

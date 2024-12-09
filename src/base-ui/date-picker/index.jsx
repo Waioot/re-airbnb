@@ -78,8 +78,8 @@ const DatePicker = memo(
           startDate &&
           endDate &&
           ((currentDay.isAfter(startDate) && currentDay.isBefore(endDate)) ||
-           currentDay.isSame(startDate, 'day') ||
-           currentDay.isSame(endDate, 'day'));
+            currentDay.isSame(startDate, 'day') ||
+            currentDay.isSame(endDate, 'day'));
 
         const isRangeStart = startDate && currentDay.isSame(startDate, 'day');
         const isRangeEnd = endDate && currentDay.isSame(endDate, 'day');
@@ -124,6 +124,20 @@ const DatePicker = memo(
 
     return (
       <DatePickerWrapper>
+        <div className='picker-head'>
+          <div className='picker-head-title'>
+            {startDate && endDate
+              ? `${dayjs(endDate).diff(startDate, 'day')}晚`
+              : '选择日期'}
+          </div>
+          <div className='from-to'>
+            {startDate && endDate
+              ? `${dayjs(startDate).format('YYYY年M月D日')} - ${dayjs(
+                  endDate
+                ).format('YYYY年M月D日')}`
+              : '添加日期以查看具体价格'}
+          </div>
+        </div>
         <div className='calendars-wrapper'>
           <div className='calendar'>
             {renderHeader(currentMonth, true)}

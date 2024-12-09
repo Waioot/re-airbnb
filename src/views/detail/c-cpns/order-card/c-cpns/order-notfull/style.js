@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const OrderNotFullWrapper = styled.div`
   width: 100%;
@@ -34,20 +34,16 @@ export const OrderNotFullWrapper = styled.div`
     border-radius: 8px;
 
     .date-section {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid #ebebeb;
+      border-bottom: 1px solid #b0b0b0;
 
       .check-in,
       .check-out {
         position: relative;
         padding: 10px 12px;
         cursor: pointer;
-
-        &:hover {
-          background-color: #f7f7f7;
-          border-radius: 8px;
-        }
 
         .label {
           color: #222;
@@ -62,15 +58,26 @@ export const OrderNotFullWrapper = styled.div`
         }
       }
 
-      .check-in {
-        border-right: 1px solid #ebebeb;
-      }
-
-      .calendar-wrapper {
+      .order-date-popup {
+        border: 1px solid black;
         position: absolute;
-        top: 100%;
-        left: 0;
+        top: 80px;
+        left: 30px;
+        width: 100%;
         z-index: 999;
+
+        .order-date-mask {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .mask-head-left {
+          }
+
+          .mask-head-right {
+          }
+        }
       }
     }
 
@@ -150,7 +157,7 @@ export const OrderNotFullWrapper = styled.div`
     .order-button {
       width: 100%;
       height: 48px;
-      background: #E61E4D;
+      background: #e61e4d;
       border-radius: 8px;
       color: white;
       font-size: 16px;
@@ -162,12 +169,13 @@ export const OrderNotFullWrapper = styled.div`
       transition: background-position 0.2s ease;
 
       &:hover {
-        background-image: radial-gradient(circle, 
-          rgb(255, 56, 92) 0%, 
-          rgb(230, 30, 77) 27.5%, 
-          rgb(227, 28, 95) 40%, 
-          rgb(215, 4, 102) 57.5%, 
-          rgb(189, 30, 89) 75%, 
+        background-image: radial-gradient(
+          circle,
+          rgb(255, 56, 92) 0%,
+          rgb(230, 30, 77) 27.5%,
+          rgb(227, 28, 95) 40%,
+          rgb(215, 4, 102) 57.5%,
+          rgb(189, 30, 89) 75%,
           rgb(189, 30, 89) 100%
         );
         background-size: 200% 200%;
