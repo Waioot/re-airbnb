@@ -40,12 +40,6 @@ const DetailPictures = memo(({ detailInfo }) => {
           text='查看全部图片'
           textStyle={{ marginLeft: '8px' }}
         />
-        {/* <div className='show-btn'>
-          <span>查看全部图片</span>
-          <span className='show-all-icon'>
-            <IconShowAll />
-          </span>
-        </div> */}
       </div>
 
       {showBrower && (

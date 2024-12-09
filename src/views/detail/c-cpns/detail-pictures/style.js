@@ -4,7 +4,7 @@ export const PicturesWrapper = styled.div`
   padding-top: 24px;
   position: relative;
 
-  > .pictures {
+  .pictures {
     display: flex;
     height: 600px;
     background-color: #000;
