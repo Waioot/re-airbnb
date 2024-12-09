@@ -6,26 +6,13 @@ export const PicturesWrapper = styled.div`
 
   .pictures {
     display: flex;
-    height: 600px;
-    background-color: #000;
-
-    &:hover {
-      .cover {
-        opacity: 1 !important;
-      }
-
-      .item:hover {
-        .cover {
-          opacity: 0 !important;
-        }
-      }
-    }
+    align-items: center;
+    justify-content: space-between;
   }
 
   .left,
   .right {
     width: 50%;
-    height: 100%;
 
     .item {
       position: relative;
@@ -37,7 +24,6 @@ export const PicturesWrapper = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
-
         transition: transform 0.3s ease-in;
       }
 
@@ -50,14 +36,16 @@ export const PicturesWrapper = styled.div`
         background-color: rgba(0, 0, 0, 0.2);
         opacity: 0;
         transition: opacity 200ms ease;
-      }
 
-      &:hover {
-        img {
-          transform: scale(1.08);
+        &:hover {
+          opacity: 1;
         }
       }
     }
+  }
+
+  .left {
+    border-radius: 16px;
   }
 
   .right {
