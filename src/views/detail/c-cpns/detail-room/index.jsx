@@ -9,6 +9,7 @@ import IconStar from '@/assets/svg/icon_star';
 import HostCard from '@/components/host-card';
 import OrderCard from '../order-card';
 import DatePicker from '@/base-ui/date-picker';
+import IconDiamond from '@/assets/svg/icon_diamond';
 
 const DetailRoom = memo(({ detailInfo }) => {
   const [startDate, setStartDate] = useState(null);
@@ -165,7 +166,15 @@ const DetailRoom = memo(({ detailInfo }) => {
         {/* 预定卡片 */}
         <OrderCard />
         {/* 提示信息 */}
-        <div></div>
+        <div className='hot-tips'>
+          <div className='hot-tips-icon'>
+            <IconDiamond />
+          </div>
+          <div className='hot-tips-item'>
+            <div className='hot-tips-item-title'>这个房源很抢手</div>
+            <div className='hot-tips-item-desc'>Kassandra 的房源经常订满。</div>
+          </div>
+        </div>
         {/* 举报房源 */}
         <div></div>
       </div>

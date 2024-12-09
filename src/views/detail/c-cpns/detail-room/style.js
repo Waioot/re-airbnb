@@ -176,4 +176,28 @@ export const DetailRoomWapper = styled.div`
     top: 80px;
     height: fit-content;
   }
+
+  .hot-tips {
+    padding: 24px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    margin-top: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .hot-tips-item-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #222;
+    }
+
+    .hot-tips-item-desc {
+      margin-top: 4px;
+      font-size: 14px;
+      color: #6a6a6a;
+      font-weight: 400;
+    }
+  }
 `;
