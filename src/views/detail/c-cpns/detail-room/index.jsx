@@ -10,6 +10,7 @@ import HostCard from '@/components/host-card';
 import OrderCard from '../order-card';
 import DatePicker from '@/base-ui/date-picker';
 import IconDiamond from '@/assets/svg/icon_diamond';
+import IconReport from '@/assets/svg/icon_report';
 
 const DetailRoom = memo(({ detailInfo }) => {
   const [startDate, setStartDate] = useState(null);
@@ -176,7 +177,12 @@ const DetailRoom = memo(({ detailInfo }) => {
           </div>
         </div>
         {/* 举报房源 */}
-        <div></div>
+        <div className='report-room'>
+          <span className='report-room-icon'>
+            <IconReport />
+          </span>
+          <span className='report-room-desc'>举报此房源</span>
+        </div>
       </div>
     </DetailRoomWapper>
   );

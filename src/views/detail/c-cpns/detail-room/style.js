@@ -200,4 +200,17 @@ export const DetailRoomWapper = styled.div`
       font-weight: 400;
     }
   }
+
+  .report-room {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 16px;
+    color: #6a6a6a;
+
+    .report-room-desc {
+      text-decoration: underline;
+    }
+  }
 `;
