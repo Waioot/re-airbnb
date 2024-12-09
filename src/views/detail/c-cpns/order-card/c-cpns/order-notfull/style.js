@@ -59,24 +59,21 @@ export const OrderNotFullWrapper = styled.div`
       }
 
       .order-date-popup {
-        border: 1px solid black;
         position: absolute;
         top: 80px;
         left: 30px;
         width: 100%;
-        z-index: 999;
 
-        .order-date-mask {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-
-          .mask-head-left {
-          }
-
-          .mask-head-right {
-          }
+        .order-date-picker {
+          position: absolute;
+          top: 0;
+          right: 0;
+          border-radius: 12px;
+          border: 1px solid #eee;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border-radius: 12px;
+          box-sizing: border-box;
+          padding: 20px;
         }
       }
     }

@@ -154,9 +154,11 @@ const DatePicker = memo(
           <button className='btn-clear' onClick={handleClear}>
             清除
           </button>
-          <button className='btn-close' onClick={onClose}>
-            关闭
-          </button>
+          {onClose && (
+            <button className='btn-close' onClick={onClose}>
+              关闭
+            </button>
+          )}
         </div>
       </DatePickerWrapper>
     );

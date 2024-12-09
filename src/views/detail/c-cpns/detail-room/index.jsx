@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import SportsMotorsportsOutlinedIcon from '@mui/icons-material/SportsMotorsportsOutlined';
@@ -8,9 +8,12 @@ import { DetailRoomWapper } from './style';
 import IconStar from '@/assets/svg/icon_star';
 import HostCard from '@/components/host-card';
 import OrderCard from '../order-card';
+import DatePicker from '@/base-ui/date-picker';
 
 const DetailRoom = memo(({ detailInfo }) => {
-  console.log(detailInfo);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   return (
     <DetailRoomWapper>
       <div className='room-left'>
@@ -146,6 +149,15 @@ const DetailRoom = memo(({ detailInfo }) => {
           <div className='card-content'>
             <HostCard />
           </div>
+        </div>
+
+        <div className='room-date-picker'>
+          <DatePicker
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+          />
         </div>
       </div>
 

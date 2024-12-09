@@ -71,6 +71,7 @@ const OrderNotFull = memo(() => {
 
   const handleDateSectionClick = e => {
     e.stopPropagation();
+    setOpenDatePicker(true);
   };
 
   return (
@@ -99,13 +100,15 @@ const OrderNotFull = memo(() => {
           </div>
           {openDatePicker && (
             <div className='order-date-popup'>
-              <DatePicker
-                startDate={checkInDate}
-                endDate={checkOutDate}
-                setStartDate={setCheckInDate}
-                setEndDate={setCheckOutDate}
-                onClose={handleCloseDatePicker}
-              />
+              <div className='order-date-picker'>
+                <DatePicker
+                  startDate={checkInDate}
+                  endDate={checkOutDate}
+                  setStartDate={setCheckInDate}
+                  setEndDate={setCheckOutDate}
+                  onClose={handleCloseDatePicker}
+                />
+              </div>
             </div>
           )}
         </div>

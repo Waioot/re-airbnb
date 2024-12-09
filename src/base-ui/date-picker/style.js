@@ -1,15 +1,8 @@
 import styled from 'styled-components';
 
 export const DatePickerWrapper = styled.div`
-  width: 600px;
-  padding: 20px;
+  width: 100%;
   background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 180px;
-  left: 10px;
-  transform: translate(-50%, -50%);
 
   .picker-head {
     display: flex;

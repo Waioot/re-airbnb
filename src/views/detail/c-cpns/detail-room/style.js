@@ -5,6 +5,7 @@ export const DetailRoomWapper = styled.div`
   display: grid;
   grid-template-columns: minmax(auto, 655px) 1fr;
   gap: 90px;
+  border-bottom: 1px solid #ddd;
 
   .room-left {
     width: 100%;
@@ -149,6 +150,7 @@ export const DetailRoomWapper = styled.div`
 
     .room-host-card {
       padding-top: 48px;
+      border-bottom: 1px solid #ddd;
 
       .card-title {
         > h2 {
@@ -161,6 +163,10 @@ export const DetailRoomWapper = styled.div`
       .card-content {
         margin-top: 24px;
       }
+    }
+
+    .room-date-picker {
+      padding: 48px 0;
     }
   }
 
