@@ -12,7 +12,21 @@ const OrderNotFull = memo(() => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [openDatePicker, setOpenDatePicker] = useState(false);
   const [openGuestPopup, setOpenGuestPopup] = useState(true);
+  const [guestInfo, setGuestInfo] = useState({
+    adults: 0,
+    children: 0,
+    infants: 0,
+    pets: 0,
+    allowPets: true,
+  });
 
+
+  function handleGuestInfo(field, isAdd) {
+    setGuestInfo((prev) => ({
+      ...prev,
+      [field]: isAdd ? prev[field] + 1 : prev[field] - 1,
+    }));
+  }
 
   // 点击其他地方关闭日期选择器
   useEffect(() => {
@@ -37,25 +51,24 @@ const OrderNotFull = memo(() => {
     };
   }, [openDatePicker]);
 
-// 点击其他地方关闭房客信息
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    const guestPopup = document.querySelector(".guest-popup");
+  // 点击其他地方关闭房客信息
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const guestPopup = document.querySelector(".guest-popup");
 
-    if (openGuestPopup && guestPopup) {
-      if (!guestPopup.contains(event.target)) {
-        setOpenGuestPopup(false);
+      if (openGuestPopup && guestPopup) {
+        if (!guestPopup.contains(event.target)) {
+          setOpenGuestPopup(false);
+        }
       }
-    }
-  };
+    };
 
-  document.addEventListener("click", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
-  return () => {
-    document.removeEventListener("click", handleClickOutside);
-  };
-}, [openGuestPopup]);
-
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [openGuestPopup]);
 
   const handleCloseDatePicker = () => {
     setOpenDatePicker(false);
@@ -103,8 +116,8 @@ useEffect(() => {
         </div>
         <div className="guest-section">
           <div className="label">房客</div>
-          <div 
-            className="guest-info" 
+          <div
+            className="guest-info"
             onClick={(e) => {
               e.stopPropagation();
               setOpenGuestPopup(!openGuestPopup);
@@ -116,33 +129,58 @@ useEffect(() => {
             </span>
           </div>
           {openGuestPopup && (
-            <div 
-              className="guest-popup" 
-              onClick={e => e.stopPropagation()}
-            >
-              <OrderItem />
+            <div className="guest-popup" onClick={(e) => e.stopPropagation()}>
+              <OrderItem
+                title="adults"
+                desc="13 岁及以上"
+                count={guestInfo.adults}
+                handleGuestInfo={handleGuestInfo}
+              />
+              <OrderItem
+                title="children"
+                desc="2 - 12 岁"
+                count={guestInfo.children}
+                handleGuestInfo={handleGuestInfo}
+              />
+              <OrderItem
+                title="infants"
+                desc="2 岁以下"
+                count={guestInfo.infants}
+                handleGuestInfo={handleGuestInfo}
+              />
+              <OrderItem
+                title="pets"
+                desc="需要携带服务类动物？"
+                count={guestInfo.pets}
+                allowPets={false}
+                handleGuestInfo={handleGuestInfo}
+              />
               <div className="notice">
                 此房源最多可入住 4 名房客（不包括婴幼儿）。不允许携带宠物入住。
               </div>
               <div className="footer">
-                <div className="btn" onClick={() => setOpenGuestPopup(false)}>关闭</div>
+                <div className="btn" onClick={() => setOpenGuestPopup(false)}>
+                  关闭
+                </div>
               </div>
             </div>
           )}
         </div>
       </div>
       <div className="order-footer">
-        <div 
+        <div
           className="order-button"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;
             // 反转坐标以修正光晕移动方向
-            e.currentTarget.style.backgroundPosition = `${100 - x}% ${100 - y}%`;
+            e.currentTarget.style.backgroundPosition = `${100 - x}% ${
+              100 - y
+            }%`;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundPosition = 'center';
+            e.currentTarget.style.backgroundPosition = "center";
           }}
         >
           预订
