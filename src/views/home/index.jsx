@@ -1,4 +1,5 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeHeaderConfigAction } from '@/store/modules/main';
 import { HomeWrapper } from './style';
@@ -20,10 +21,21 @@ const Home = memo(() => {
   const longforInfo = useSelector(state => state.home.longforInfo);
   const plusInfo = useSelector(state => state.home.plusInfo);
 
+  console.log(discountInfo);
+
   useEffect(() => {
     dispatch(fetchHomeDataAction());
     dispatch(changeHeaderConfigAction({ isFixed: true, topAlpha: true }));
   }, [dispatch]);
+
+  const navigate = useNavigate();
+
+  const handleShowRoomDetail = useCallback(
+    function (item) {
+      navigate('/detail');
+    },
+    [navigate]
+  );
 
   return (
     <HomeWrapper>
@@ -32,24 +44,40 @@ const Home = memo(() => {
         {/* 向往数据 */}
         {!isEmptyObject(longforInfo) && <HomeLongfor infoData={longforInfo} />}
 
-        {/* 折扣数据 */}
+        {/* 折扣数据（热门目的地） */}
         {!isEmptyObject(discountInfo) && (
-          <HomeSectionV2 infoData={discountInfo} />
+          <HomeSectionV2
+            roomClick={handleShowRoomDetail}
+            infoData={discountInfo}
+          />
         )}
         {/* 热门推荐房源 */}
         {!isEmptyObject(recommendInfo) && (
-          <HomeSectionV2 infoData={recommendInfo} />
+          <HomeSectionV2
+            roomClick={handleShowRoomDetail}
+            infoData={recommendInfo}
+          />
         )}
 
-        {/* 高评分数据 */}
+        {/* 高性价比房源 */}
         {!isEmptyObject(goodPriceInfo) && (
-          <HomeSectionV1 infoData={goodPriceInfo} />
+          <HomeSectionV1
+            roomClick={handleShowRoomDetail}
+            infoData={goodPriceInfo}
+          />
         )}
+
+        {/* 高评分房源 */}
         {!isEmptyObject(highScoreInfo) && (
-          <HomeSectionV1 infoData={highScoreInfo} />
+          <HomeSectionV1
+            roomClick={handleShowRoomDetail}
+            infoData={highScoreInfo}
+          />
         )}
         {/* 特色房源数据 */}
-        {!isEmptyObject(plusInfo) && <HomeSectionV3 infoData={plusInfo} />}
+        {!isEmptyObject(plusInfo) && (
+          <HomeSectionV3 roomClick={handleShowRoomDetail} infoData={plusInfo} />
+        )}
       </div>
     </HomeWrapper>
   );

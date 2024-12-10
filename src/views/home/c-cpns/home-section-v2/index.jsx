@@ -7,7 +7,7 @@ import SectionRooms from '@/components/section-rooms';
 import SectionFooter from '@/components/section-footer';
 
 // 首页-房屋组件-需要tab切换场景
-const HomeSectionV2 = memo(({ infoData }) => {
+const HomeSectionV2 = memo(({ infoData, roomClick }) => {
   const inistalName = Object.keys(infoData?.dest_list)?.[0];
   const [tabName, setTabName] = useState(inistalName);
 
@@ -25,6 +25,7 @@ const HomeSectionV2 = memo(({ infoData }) => {
       <SectionRooms
         roomList={infoData?.dest_list?.[tabName]}
         itemWidth='33.33%'
+        roomClick={roomClick}
       />
       <SectionFooter name={tabName} />
     </HomeSectionV2Wrapper>

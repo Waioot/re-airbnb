@@ -9,7 +9,7 @@ import { BrowserWrapper } from './style';
 import Indicator from '../indicator';
 import IconTriangleTop from '@/assets/svg/icon-triangle-top';
 
-const PictureBrowser = memo(({ pictureUrls, showPictureBrowser }) => {
+const PictureBrowser = memo(({ pictureUrls = [], showPictureBrowser }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isNext, setIsNext] = useState(true);
   const [isShowPictureList, setIsShowPictureList] = useState(true);
