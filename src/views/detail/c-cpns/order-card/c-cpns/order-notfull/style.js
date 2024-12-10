@@ -63,6 +63,7 @@ export const OrderNotFullWrapper = styled.div`
         top: 80px;
         left: 30px;
         width: 100%;
+        z-index: 9;
 
         .order-date-picker {
           position: absolute;
@@ -118,6 +119,7 @@ export const OrderNotFullWrapper = styled.div`
         border-radius: 8px;
         box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
         padding: 16px;
+        z-index: 9;
 
         .notice {
           font-size: 12px;

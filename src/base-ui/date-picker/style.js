@@ -119,7 +119,6 @@ export const DatePickerWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
   }
 
   .day:not(.selected):hover {
@@ -135,8 +134,14 @@ export const DatePickerWrapper = styled.div`
     }
   }
 
+  // 选中日期范围
   .day.in-range {
     position: relative;
+    /* 数字文本需要在黑色圆形背景之上 */
+    span {
+      position: relative;
+      z-index: 2;
+    }
 
     &::before {
       content: '';
@@ -146,7 +151,7 @@ export const DatePickerWrapper = styled.div`
       right: 0;
       height: 100%;
       background-color: #f7f7f7;
-      z-index: -2;
+      z-index: 1;
     }
 
     &.row-start::before {
@@ -188,8 +193,17 @@ export const DatePickerWrapper = styled.div`
     }
   }
 
+  // 选中状态的圆形背景
   .day.selected {
     color: #fff;
+    position: relative;
+    z-index: 2; // 添加这行，确保选中的日期在范围背景之上
+
+    /* 数字文本需要在黑色圆形背景之上 */
+    span {
+      position: relative;
+      z-index: 2;
+    }
 
     &::after {
       content: '';
@@ -200,7 +214,7 @@ export const DatePickerWrapper = styled.div`
       bottom: 0;
       background-color: #000;
       border-radius: 50%;
-      z-index: -1;
+      z-index: 1;
       width: 40px;
       height: 40px;
     }
@@ -231,7 +245,6 @@ export const DatePickerWrapper = styled.div`
 
       &.btn-clear {
         background-color: #fff;
-        text-decoration: underline;
         color: #222;
         &:hover {
           background-color: #f5f5f5;

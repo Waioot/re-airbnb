@@ -102,7 +102,7 @@ const DatePicker = memo(
               ${isRowEnd ? 'row-end' : ''}`}
             onClick={() => handleDateClick(currentDay)}
           >
-            {i}
+            <span>{i}</span>
           </div>
         );
       }
