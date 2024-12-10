@@ -15,6 +15,7 @@ import IconReport from '@/assets/svg/icon_report';
 const DetailRoom = memo(({ detailInfo }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [isOrderFull, setIsOrderFull] = useState(false);
 
   return (
     <DetailRoomWapper>
@@ -165,7 +166,7 @@ const DetailRoom = memo(({ detailInfo }) => {
 
       <div className='room-right'>
         {/* 预定卡片 */}
-        <OrderCard />
+        <OrderCard isOrderFull={isOrderFull} />
         {/* 提示信息 */}
         <div className='hot-tips'>
           <div className='hot-tips-icon'>
