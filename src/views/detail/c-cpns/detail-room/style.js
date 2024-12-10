@@ -6,7 +6,6 @@ export const DetailRoomWapper = styled.div`
   grid-template-columns: minmax(auto, 655px) 1fr;
   gap: 90px;
   border-bottom: 1px solid #ddd;
-
   .room-left {
     width: 100%;
     display: flex;
@@ -208,6 +207,7 @@ export const DetailRoomWapper = styled.div`
     justify-content: center;
     column-gap: 16px;
     color: #6a6a6a;
+    margin-bottom: 48px;
 
     .report-room-desc {
       text-decoration: underline;

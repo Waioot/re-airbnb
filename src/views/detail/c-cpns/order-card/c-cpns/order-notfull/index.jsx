@@ -5,7 +5,8 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import DatePicker from '@/base-ui/date-picker';
 import OrderItem from '@/components/order-item';
-import IconTriangleBottom from '@/assets/svg/icon-triangle-bottom';
+import IconArrowUp from '@/assets/svg/icon-arrow-up';
+import IconArrowDown from '@/assets/svg/icon-arrow-down';
 
 const OrderNotFull = memo(() => {
   const [checkInDate, setCheckInDate] = useState(null);
@@ -112,18 +113,22 @@ const OrderNotFull = memo(() => {
             </div>
           )}
         </div>
-        <div className='guest-section'>
+        <div
+          className='guest-section'
+          onClick={e => {
+            e.stopPropagation();
+            setOpenGuestPopup(pre => !pre);
+          }}
+        >
           <div className='label'>房客</div>
-          <div
-            className='guest-info'
-            onClick={e => {
-              e.stopPropagation();
-              setOpenGuestPopup(!openGuestPopup);
-            }}
-          >
+          <div className='guest-info'>
             <span className='text'>2 位房客</span>
             <span className='icon'>
-              <IconTriangleBottom />
+              {openGuestPopup ? (
+                <IconArrowUp width={16} height={16} />
+              ) : (
+                <IconArrowDown width={16} height={16} />
+              )}
             </span>
           </div>
           {openGuestPopup && (

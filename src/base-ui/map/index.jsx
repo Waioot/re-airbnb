@@ -6,6 +6,7 @@ const MapComponent = memo(props => {
   const containerStyle = {
     width: '100%',
     height: '100%',
+    borderRadius: '8px',
   };
 
   // 设置地图中心点坐标
