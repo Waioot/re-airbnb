@@ -222,9 +222,25 @@ export const DatePickerWrapper = styled.div`
 
   .day.disabled {
     color: #ccc;
-    cursor: not-allowed;
+    position: relative; // 添加相对定位
+
+    // 添加横线样式
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px; // 横线长度
+      height: 1px; // 横线粗细
+      background-color: #ccc; // 横线颜色
+      transform: translate(-50%, -50%) rotate(180deg); // 居中并旋转45度
+    }
+
+    // 完全禁用 hover 效果
     &:hover {
-      background-color: transparent;
+      &::after {
+        display: none; // 禁用默认的 hover 边框效果
+      }
     }
   }
 
