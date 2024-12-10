@@ -22,27 +22,29 @@ const OrderNotFull = memo(() => {
     allowPets: true,
   });
 
+  // 点击其他地方关闭日期选择器
+  useClosePopup(openDatePicker, setOpenDatePicker, 'order-date-popup');
+  // 点击其他地方关闭房客信息
+  useClosePopup(openGuestPopup, setOpenGuestPopup, 'guest-popup');
+
+  const handleCloseDatePicker = e => {
+    setOpenDatePicker(false);
+    setOpenGuestPopup(false);
+  };
+
+  const handleDateSectionClick = e => {
+    e.stopPropagation();
+    setOpenDatePicker(pre => !pre);
+    setOpenGuestPopup(false);
+  };
+
+  // 更新房客预定信息
   function handleGuestInfo(field, isAdd) {
     setGuestInfo(prev => ({
       ...prev,
       [field]: isAdd ? prev[field] + 1 : prev[field] - 1,
     }));
   }
-
-  // 点击其他地方关闭日期选择器
-  useClosePopup(openDatePicker, setOpenDatePicker, 'order-date-popup');
-  // 点击其他地方关闭房客信息
-  useClosePopup(openGuestPopup, setOpenGuestPopup, 'guest-popup');
-
-  const handleCloseDatePicker = () => {
-    setOpenDatePicker(false);
-  };
-
-  const handleDateSectionClick = e => {
-    e.stopPropagation();
-    setOpenGuestPopup(false);
-    setOpenDatePicker(true);
-  };
 
   return (
     <OrderNotFullWrapper>
@@ -52,7 +54,7 @@ const OrderNotFull = memo(() => {
       </div>
       <div className='order-content'>
         <div className='date-section' onClick={handleDateSectionClick}>
-          <div className='check-in' onClick={() => setOpenDatePicker(true)}>
+          <div className='check-in'>
             <div className='label'>入住日期</div>
             <div className='date'>
               {checkInDate
@@ -60,7 +62,7 @@ const OrderNotFull = memo(() => {
                 : '请选择入住日期'}
             </div>
           </div>
-          <div className='check-out' onClick={() => setOpenDatePicker(true)}>
+          <div className='check-out'>
             <div className='label'>退房日期</div>
             <div className='date'>
               {checkOutDate
@@ -70,7 +72,10 @@ const OrderNotFull = memo(() => {
           </div>
           {openDatePicker && (
             <div className='order-date-popup'>
-              <div className='order-date-picker'>
+              <div
+                className='order-date-picker'
+                onClick={e => e.stopPropagation()}
+              >
                 <DatePicker
                   startDate={checkInDate}
                   endDate={checkOutDate}
@@ -86,6 +91,7 @@ const OrderNotFull = memo(() => {
           className='guest-section'
           onClick={e => {
             e.stopPropagation();
+            setOpenDatePicker(false);
             setOpenGuestPopup(pre => !pre);
           }}
         >
@@ -131,7 +137,14 @@ const OrderNotFull = memo(() => {
                 此房源最多可入住 4 名房客（不包括婴幼儿）。不允许携带宠物入住。
               </div>
               <div className='footer'>
-                <div className='btn' onClick={() => setOpenGuestPopup(false)}>
+                <div
+                  className='btn'
+                  onClick={e => {
+                    e.stopPropagation();
+                    setOpenGuestPopup(false);
+                    setOpenDatePicker(false);
+                  }}
+                >
                   关闭
                 </div>
               </div>
