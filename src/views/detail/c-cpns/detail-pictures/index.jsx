@@ -1,8 +1,9 @@
-import { memo, useState } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { PicturesWrapper } from './style';
-import PictureBrowser from '@/base-ui/picture-browser';
+// import PictureBrowser from '@/base-ui/picture-browser';
 import IconShowAll from '@/assets/svg/icon_showAll';
 import IconButton from '@/components/icon-button';
+import WaterfallGrid from '@/base-ui/waterfall-grid';
 
 const DetailPictures = memo(({ detailInfo }) => {
   const [showBrower, setShowBrower] = useState(false);
@@ -10,6 +11,21 @@ const DetailPictures = memo(({ detailInfo }) => {
   function showPictureBrowser(show) {
     setShowBrower(show);
   }
+
+  //showBrower为 true 时， 浏览器滚动条和瀑布流滚动条冲突
+  // 解决方法： 使用全局监听事件， 当showBrower为 true 时， 监听浏览器滚动条， 当瀑布流滚动条滚动时， 阻止浏览器滚动条滚动
+  useEffect(() => {
+    if (showBrower) {
+      document.body.style.overflow = 'hidden';
+      const scrollTop = 60;
+      console.log(scrollTop);
+      // 设置滚动条的开始位置
+      window.scrollTo(0, scrollTop);
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showBrower]);
+
   return (
     <PicturesWrapper>
       <div className='pictures'>
@@ -43,10 +59,12 @@ const DetailPictures = memo(({ detailInfo }) => {
       </div>
 
       {showBrower && (
-        <PictureBrowser
-          pictureUrls={detailInfo.picture_urls}
-          showPictureBrowser={showPictureBrowser}
-        />
+        <div className='picture-browser'>
+          <WaterfallGrid
+            pictureUrls={detailInfo.picture_urls}
+            closeClick={() => showPictureBrowser(false)}
+          />
+        </div>
       )}
     </PicturesWrapper>
   );

@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react';
+import { memo, useState } from 'react';
 import { OrderNotFullWrapper } from './style';
 
 import useClosePopup from '@/hooks/useClosePopup';

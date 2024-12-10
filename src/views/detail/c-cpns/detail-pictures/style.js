@@ -68,6 +68,17 @@ export const PicturesWrapper = styled.div`
     }
   }
 
+  .picture-browser {
+    position: fixed;
+    z-index: 999;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-y: auto;
+  }
+
   .show-all {
     position: absolute;
     z-index: 99;
@@ -78,8 +89,5 @@ export const PicturesWrapper = styled.div`
     border-radius: 4px;
     background-color: #fff;
     cursor: pointer;
-  }
-
-  .show-btn {
   }
 `;
