@@ -74,6 +74,7 @@ export const OrderNotFullWrapper = styled.div`
           border-radius: 12px;
           box-sizing: border-box;
           padding: 20px;
+          background-color: #fff; // 添加背景色
         }
       }
     }

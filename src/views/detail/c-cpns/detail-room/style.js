@@ -149,6 +149,7 @@ export const DetailRoomWapper = styled.div`
 
     .room-host-card {
       padding-top: 48px;
+      padding-bottom: 48px;
       border-bottom: 1px solid #ddd;
 
       .card-title {

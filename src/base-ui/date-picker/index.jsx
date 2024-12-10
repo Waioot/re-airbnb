@@ -152,7 +152,7 @@ const DatePicker = memo(
         </div>
         <div className='footer'>
           <button className='btn-clear' onClick={handleClear}>
-            清除
+            清除日期
           </button>
           {onClose && (
             <button className='btn-close' onClick={onClose}>

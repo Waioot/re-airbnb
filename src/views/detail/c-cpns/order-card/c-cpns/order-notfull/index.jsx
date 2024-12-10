@@ -97,7 +97,9 @@ const OrderNotFull = memo(() => {
         >
           <div className='label'>房客</div>
           <div className='guest-info'>
-            <span className='text'>2 位房客</span>
+            <span className='text'>
+              {guestInfo.adults + guestInfo.children} 位房客
+            </span>
             <span className='icon'>
               {openGuestPopup ? (
                 <IconArrowUp width={16} height={16} />

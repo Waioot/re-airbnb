@@ -220,7 +220,6 @@ export const DatePickerWrapper = styled.div`
     gap: 12px;
     margin-top: 20px;
     padding-top: 12px;
-    border-top: 1px solid #ebebeb;
 
     button {
       padding: 8px 16px;
@@ -232,6 +231,7 @@ export const DatePickerWrapper = styled.div`
 
       &.btn-clear {
         background-color: #fff;
+        text-decoration: underline;
         color: #222;
         &:hover {
           background-color: #f5f5f5;
