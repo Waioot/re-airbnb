@@ -1,6 +1,7 @@
 import { memo, useState, useEffect } from 'react';
 import { OrderNotFullWrapper } from './style';
 
+import useClosePopup from '@/hooks/useClosePopup';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import DatePicker from '@/base-ui/date-picker';
@@ -29,42 +30,9 @@ const OrderNotFull = memo(() => {
   }
 
   // 点击其他地方关闭日期选择器
-  useEffect(() => {
-    const handleClickOutside = event => {
-      const calendar = document.querySelector('.order-date-popup');
-
-      if (openDatePicker && calendar) {
-        if (!calendar.contains(event.target)) {
-          setOpenDatePicker(false);
-        }
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [openDatePicker]);
-
+  useClosePopup(openDatePicker, setOpenDatePicker, 'order-date-popup');
   // 点击其他地方关闭房客信息
-  useEffect(() => {
-    const handleClickOutside = event => {
-      const guestPopup = document.querySelector('.guest-popup');
-
-      if (openGuestPopup && guestPopup) {
-        if (!guestPopup.contains(event.target)) {
-          setOpenGuestPopup(false);
-        }
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [openGuestPopup]);
+  useClosePopup(openGuestPopup, setOpenGuestPopup, 'guest-popup');
 
   const handleCloseDatePicker = () => {
     setOpenDatePicker(false);
@@ -72,6 +40,7 @@ const OrderNotFull = memo(() => {
 
   const handleDateSectionClick = e => {
     e.stopPropagation();
+    setOpenGuestPopup(false);
     setOpenDatePicker(true);
   };
 
