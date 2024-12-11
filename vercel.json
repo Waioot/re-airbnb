@@ -1,9 +1,9 @@
 {
+  "version": 2,
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "http://codercba.com:1888/airbnb/api/:path*",
-      "methods": ["GET", "POST", "PUT", "DELETE"]
+      "dest": "http://codercba.com:1888/airbnb/api/$1"
     }
   ]
 }
