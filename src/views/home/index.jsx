@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import { changeHeaderConfigAction } from '@/store/modules/main';
 import { HomeWrapper } from './style';
 import HomeBanner from './c-cpns/home-banner';
@@ -14,14 +15,27 @@ import { isEmptyObject } from '@/utils';
 const Home = memo(() => {
   const dispatch = useDispatch();
 
-  const goodPriceInfo = useSelector(state => state.home.goodPriceInfo);
-  const highScoreInfo = useSelector(state => state.home.highScoreInfo);
-  const discountInfo = useSelector(state => state.home.discountInfo);
-  const recommendInfo = useSelector(state => state.home.recommendInfo);
-  const longforInfo = useSelector(state => state.home.longforInfo);
-  const plusInfo = useSelector(state => state.home.plusInfo);
-
-  console.log(discountInfo);
+  const goodPriceInfo = useSelector(
+    state => state.home.goodPriceInfo,
+    shallowEqual
+  );
+  const highScoreInfo = useSelector(
+    state => state.home.highScoreInfo,
+    shallowEqual
+  );
+  const discountInfo = useSelector(
+    state => state.home.discountInfo,
+    shallowEqual
+  );
+  const recommendInfo = useSelector(
+    state => state.home.recommendInfo,
+    shallowEqual
+  );
+  const longforInfo = useSelector(
+    state => state.home.longforInfo,
+    shallowEqual
+  );
+  const plusInfo = useSelector(state => state.home.plusInfo, shallowEqual);
 
   useEffect(() => {
     dispatch(fetchHomeDataAction());

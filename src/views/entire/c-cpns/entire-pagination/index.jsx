@@ -3,12 +3,31 @@ import { EntirePaginationWrapper } from './style';
 import { Pagination } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchEntireRoomListDataAction } from '@/store/modules/entire';
+import { shallowEqual } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit';
+
+const selectEntireData = createSelector(
+  [state => state.entire],
+  entireState => ({
+    totalCount: entireState.totalCount,
+    currentPage: entireState.currentPage,
+    roomList: entireState.roomList,
+  })
+);
+
 const EntirePagination = memo(() => {
-  const { totalCount, currentPage, roomList } = useSelector(state => ({
-    totalCount: state.entire.totalCount,
-    currentPage: state.entire.currentPage,
-    roomList: state.entire.roomList,
-  }));
+  // const { totalCount, currentPage, roomList } = useSelector(
+  //   state => ({
+  //     totalCount: state.entire.totalCount,
+  //     currentPage: state.entire.currentPage,
+  //     roomList: state.entire.roomList,
+  //   }),
+  //   shallowEqual
+  // );
+  const { totalCount, currentPage, roomList } = useSelector(
+    selectEntireData,
+    shallowEqual
+  );
 
   const start = currentPage * 20 + 1;
   const end = (currentPage + 1) * 20;

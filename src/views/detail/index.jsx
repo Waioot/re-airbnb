@@ -1,5 +1,6 @@
 import { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import { changeHeaderConfigAction } from '@/store/modules/main';
 
 import { DetailWrapper } from './style';
@@ -7,13 +8,13 @@ import DetailPictures from './c-cpns/detail-pictures';
 import RoomDetailHeader from './c-cpns/detail-info';
 import DetailRoom from './c-cpns/detail-room';
 import RoomLocation from './c-cpns/room-location';
+
 const Detail = memo(() => {
   const dispatch = useDispatch();
-  const { detailInfo } = useSelector(state => {
-    return {
-      detailInfo: state.detail.detailInfo,
-    };
-  });
+  const detailInfo = useSelector(
+    state => state.detail.detailInfo,
+    shallowEqual
+  );
 
   useEffect(() => {
     dispatch(changeHeaderConfigAction({ isFixed: false, topAlpha: false }));
