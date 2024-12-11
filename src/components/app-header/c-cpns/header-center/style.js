@@ -46,7 +46,6 @@ export const CenterWrapper = styled.div`
       top: 60px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #fff;
     }
   }
 `;
