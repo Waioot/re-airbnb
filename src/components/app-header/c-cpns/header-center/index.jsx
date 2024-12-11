@@ -13,72 +13,83 @@ const HeaderCenter = memo(({ isSearch, searchClick }) => {
 
   // 动画变体配置
   const searchBarVariants = {
-    hidden: {
+    initial: {
       opacity: 0,
-      scale: [0.1, 0.3],
-      y: 20,
+      scale: 1,
+      x: 20,
     },
-    visible: {
+    animate: {
       opacity: 1,
       scale: 1,
-      y: 0,
-      transition: { duration: 0.25 },
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeOut',
+      },
     },
     exit: {
       opacity: 0,
-      scale: [0.1, 0.3],
-      y: 20,
-      transition: { duration: 0.25 },
+      scale: 1,
+      x: -20,
+      transition: {
+        duration: 0.3,
+        ease: 'easeIn',
+      },
     },
   };
 
   const searchDetailVariants = {
-    hidden: {
+    initial: {
       opacity: 0,
-      scale: [0.1, 0.3],
-      y: -20,
+      scale: 1,
+      x: -20,
     },
-    visible: {
+    animate: {
       opacity: 1,
-      scale: 0.5,
-      y: 0,
-      transition: { duration: 0.25 },
+      scale: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeOut',
+      },
     },
     exit: {
       opacity: 0,
-      scale: [0.1, 0.3],
-      y: -20,
-      transition: { duration: 0.25 },
+      scale: 1,
+      x: 20,
+      transition: {
+        duration: 0.3,
+        ease: 'easeIn',
+      },
     },
   };
 
   return (
     <CenterWrapper>
-      <AnimatePresence mode='wait'>
-        {!isSearch && (
+      <AnimatePresence mode='wait' initial={false}>
+        {!isSearch ? (
           <motion.div
             className='search-bar'
             onClick={searchClick}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
             variants={searchBarVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
             key='search-bar'
+            style={{ transformOrigin: 'center' }}
           >
             <div className='text'>搜索房源和体验</div>
             <div className='icon'>
               <IconSearchBar />
             </div>
           </motion.div>
-        )}
-
-        {isSearch && (
+        ) : (
           <motion.div
             className='search-detail'
-            initial='hidden'
-            animate='visible'
-            exit='exit'
             variants={searchDetailVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
             key='search-detail'
           >
             <SearchTabs

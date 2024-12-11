@@ -39,14 +39,14 @@ export const CenterWrapper = styled.div`
 
   .search-detail {
     position: relative;
-    transform-origin: 50% 0;
-    will-change: transform, opacity;
+    width: 100%;
 
     .infos {
       position: absolute;
       top: 60px;
       left: 50%;
       transform: translateX(-50%);
+      background-color: #fff;
     }
   }
 `;
