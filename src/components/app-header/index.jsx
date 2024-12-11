@@ -8,23 +8,22 @@ import HeaderCenter from './c-cpns/header-center';
 import HeaderRight from './c-cpns/header-right';
 import useScrollPosition from '@/hooks/useScrollPosition';
 
+import { createSelector } from '@reduxjs/toolkit';
+
+// 创建记忆化的选择器
+const selectHeaderConfig = createSelector(
+  [state => state.main.headerConfig],
+  headerConfig => ({
+    isFixed: headerConfig.isFixed,
+    topAlpha: headerConfig.topAlpha,
+  })
+);
+
 const AppHeader = memo(() => {
   const [isSearch, setIsSearch] = useState(false);
 
-  const { isFixed } = useSelector(
-    state => ({
-      isFixed: state.main.headerConfig.isFixed,
-    }),
-    [shallowEqual]
-  );
-  const { topAlpha } = useSelector(
-    state => {
-      return {
-        topAlpha: state.main.headerConfig.topAlpha,
-      };
-    },
-    [shallowEqual]
-  );
+  // 使用记忆化的选择器
+  const { isFixed, topAlpha } = useSelector(selectHeaderConfig, shallowEqual);
 
   const { scrollY } = useScrollPosition();
   const prevY = useRef(0);
@@ -61,9 +60,9 @@ const AppHeader = memo(() => {
             <SearchWrapper $isSearch={isAlpha || isSearch} />
           </div>
         </div>
-        {isSearch ? (
+        {isSearch && (
           <div className='cover' onClick={e => setIsSearch(false)}></div>
-        ) : null}
+        )}
       </HeaderWrapper>
     </ThemeProvider>
   );
