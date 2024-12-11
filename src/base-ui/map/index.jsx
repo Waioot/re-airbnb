@@ -1,26 +1,43 @@
-import React, { memo } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { useEffect, useRef, memo } from 'react';
+import AMapLoader from '@amap/amap-jsapi-loader';
+import { MapWrapper } from './style';
 
-const MapComponent = memo(props => {
-  // 地图容器样式
-  const containerStyle = {
-    width: '100%',
-    height: '100%',
-    borderRadius: '8px',
-  };
+// 在组件外部定义配置
+const MAP_CONFIG = {
+  viewMode: '3D',
+  zoom: 11,
+  center: [116.397428, 39.90923],
+  showBuildingBlock: true,
+};
 
-  // 设置地图中心点坐标
-  const center = {
-    lat: 37.7749, // 替换为实际位置的纬度
-    lng: -122.4194, // 替换为实际位置的经度
-  };
+const MapComponent = memo(({ apiKey, securityKey }) => {
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    window._AMapSecurityConfig = {
+      securityJsCode: securityKey,
+    };
+    AMapLoader.load({
+      key: apiKey,
+      version: '2.0',
+      plugins: ['AMap.Scale'],
+    })
+      .then(AMap => {
+        mapRef.current = new AMap.Map('container', MAP_CONFIG);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+
+    return () => {
+      mapRef.current?.destroy();
+    };
+  }, []);
 
   return (
-    <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
-        {/* 可以在这里添加标记等其他组件 */}
-      </GoogleMap>
-    </LoadScript>
+    <MapWrapper>
+      <div id='container' style={{ height: '480px' }}></div>
+    </MapWrapper>
   );
 });
 

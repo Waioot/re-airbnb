@@ -17,10 +17,6 @@ const DetailPictures = memo(({ detailInfo }) => {
   useEffect(() => {
     if (showBrower) {
       document.body.style.overflow = 'hidden';
-      const scrollTop = 60;
-      console.log(scrollTop);
-      // 设置滚动条的开始位置
-      window.scrollTo(0, scrollTop);
     } else {
       document.body.style.overflow = 'auto';
     }
